@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="index.css" rel="stylesheet" type="text/css" />
+    <script src="./js/easeljs-0.8.1.min.js"></script>
+    <script src="./js/preloadjs-0.6.2.min.js"></script>
+    <script src="./js/tweenjs-0.6.1.min.js"></script>
+    <script src="./js/jquery.js"></script>
+</head>
+
+<body onload="init()">
+    <header class="Nora7aki">
+        <h1>蒙版滤镜动态显示 AlphaMaskFilter reveal</h1>
+        <p>
+            通过一张图片，从下至上构建了<code>blur</code>和<code>bitmap</code>两个图层。<code>blur</code>通过配置<code>BlurFilter</code>和<code>ColorMatrixFilter</code>滤镜，显示清爽的模糊图像层。<code>bitmap</code>使用<code>AlphaMaskFilter</code>滤镜将其作为蒙版应用到图像。通过擦除动作绘制<code>bitmap</code>中的蒙版，从而显示清晰图像。
+        </p>
+    </header>
+
+    <div>
+        <canvas id="examCanvas" width="960" height="696"></canvas>
+    </div>
+
+    <script>
+        let stage           // createjs舞台
+        let isDrawing       // 绘制状态
+        let drawingCanvas   // 绘制区域
+        let oldPt, oldMidPt // 绘制点、绘制中点
+        let image           // image对象
+        let bitmap          // 绘制层位图
+        let maskFilter      // 绘制层蒙版
+        let cursor          // 鼠标指针图形
+        let text            // 文本图形
+        let blur            // 模糊图片层
+
+        function init() {
+
+            image = new Image()
+            image.onload = handleComplete
+            image.src = "img/duniao/o1.jpg"
+
+            stage = new createjs.Stage('examCanvas')
+
+            text = new createjs.Text('Loading...', '30px 微软雅黑', '#FFF')
+            text.set({ x: stage.canvas.width / 2, y: stage.canvas.height / 2 - 40 });
+            text.shadow = new createjs.Shadow('rgba(9,153,166,1)', 0, 5, 5)
+            text.textAlign = 'center'
+        }
+
+        function handleComplete() {
+            createjs.Touch.enable(stage);
+            stage.enableMouseOver()
+
+            stage.addEventListener('stagemousedown', handleMouseDown)
+            stage.addEventListener('stagemouseup', handleMouseUp)
+            stage.addEventListener('stagemousemove', handleMouseMove)
+
+            drawingCanvas = new createjs.Shape()
+            drawingCanvas.cache(0, 0, image.width, image.height)
+
+            bitmap = new createjs.Bitmap(image)
+            maskFilter = new createjs.AlphaMaskFilter(drawingCanvas.cacheCanvas)
+            bitmap.filters = [maskFilter]
+            bitmap.cache(0, 0, image.width, image.height);
+
+            blur = new createjs.Bitmap(image).set({scaleX:0.3, scaleY:0.3})
+            blur.filters = [
+                new createjs.BlurFilter(24, 24, 2),
+                new createjs.ColorMatrixFilter(new createjs.ColorMatrix(40))
+            ]
+            blur.cache(0, 0, 960, 696)
+
+            text.text = "点击并拖动鼠标查看\n\n《袖珍上海警察区分局图》"
+
+            stage.addChild(blur, text, bitmap)
+
+            cursor = new createjs.Shape(
+                new createjs.Graphics().beginFill('rgba(255,255,255,0.5)').drawCircle(0, 0, 50)
+            )
+            cursor.cursor = "pointer"
+
+            stage.addChild(cursor)
+            stage.update()
+        }
+
+        function handleMouseDown(event) {
+            oldPt = new createjs.Point(stage.mouseX, stage.mouseY)
+            oldMidPt = oldPt
+            isDrawing = true
+        }
+
+        function handleMouseMove(event) {
+            cursor.x = stage.mouseX
+            cursor.y = stage.mouseY
+
+            if (!isDrawing) {
+                stage.update()
+                return
+            }
+			// 移位符计算>>1，相当于取oldPt和stage.mouse两个点的中间值
+            var midPoint = new createjs.Point(oldPt.x + stage.mouseX >> 1, oldPt.y + stage.mouseY >> 1)
+			// 根据鼠标移动轨迹，依次设置遮罩层笔触样式，颜色，起始点，以及绘制路线
+            drawingCanvas.graphics.clear()
+                .setStrokeStyle(100, 'round', 'round')
+                .beginStroke('rgba(0,0,0,0.2')
+                .moveTo(midPoint.x, midPoint.y)
+                .curveTo(oldPt.x, oldPt.y, oldMidPt.x, oldMidPt.y)
+
+            oldPt.x = stage.mouseX
+            oldPt.y = stage.mouseY
+
+            oldMidPt.x = midPoint.x
+            oldMidPt.y = midPoint.y
+
+            drawingCanvas.updateCache('source-over')
+            bitmap.updateCache()
+            stage.update()
+        }
+		// 在保留缓存的基础上继续绘制
+        function handleMouseUp(event) {
+            isDrawing = false
+        }
+
+    </script>
+</body>
+
+</html>
