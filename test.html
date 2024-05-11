@@ -65,7 +65,7 @@
             bitmap.filters = [maskFilter]
             bitmap.cache(0, 0, image.width, image.height);
 
-            blur = new createjs.Bitmap(image).set({scaleX:0.3, scaleY:0.3})
+            blur = new createjs.Bitmap(image).set({ scaleX: 0.3, scaleY: 0.3 })
             blur.filters = [
                 new createjs.BlurFilter(24, 24, 2),
                 new createjs.ColorMatrixFilter(new createjs.ColorMatrix(40))
@@ -99,9 +99,9 @@
                 stage.update()
                 return
             }
-			// 移位符计算>>1，相当于取oldPt和stage.mouse两个点的中间值
+            // 移位符计算>>1，相当于取oldPt和stage.mouse两个点的中间值
             var midPoint = new createjs.Point(oldPt.x + stage.mouseX >> 1, oldPt.y + stage.mouseY >> 1)
-			// 根据鼠标移动轨迹，依次设置遮罩层笔触样式，颜色，起始点，以及绘制路线
+            // 根据鼠标移动轨迹，依次设置遮罩层笔触样式，颜色，起始点，以及绘制路线
             drawingCanvas.graphics.clear()
                 .setStrokeStyle(100, 'round', 'round')
                 .beginStroke('rgba(0,0,0,0.2')
@@ -118,7 +118,7 @@
             bitmap.updateCache()
             stage.update()
         }
-		// 在保留缓存的基础上继续绘制
+        // 在保留缓存的基础上继续绘制
         function handleMouseUp(event) {
             isDrawing = false
         }
