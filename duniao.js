@@ -613,7 +613,6 @@ function showHint(str, time) {
 function removeHint() {
     texthint.text = " ";
     texthint.set({ alpha: 1 });
-
 }
 
 function onSceneoneClicked() {

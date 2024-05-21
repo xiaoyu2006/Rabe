@@ -34,9 +34,11 @@
 </head>
 
 <body id="main">
-    <canvas id=wrapper>
-        您的浏览器暂不支持！
-    </canvas>
+    <div class="canvas-container">
+        <canvas id="wrapper">
+            您的浏览器暂不支持！
+        </canvas>
+    </div>
 
     <audio name="musicplayer" id="myaudio" autoplay="autoplay" loop="loop" src="" volume=0.15>
         你的浏览器版本太低， 无法播放音乐
@@ -44,12 +46,8 @@
     <audio name="musicplayer" id="effect" autoplay="autoplay">
         你的浏览器版本太低， 无法播放音乐
     </audio>
+    <script src="common.js"></script>
     <script src="init.js"></script>
-    <script>
-
-
-    </script>
-
 </body>
 
 </html>

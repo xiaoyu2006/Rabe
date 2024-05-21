@@ -727,15 +727,21 @@ function onbagitemDraggedEnd(evt) {
     }
 }
 
-function showHint(str, time) {
+function showHint(hint, time) {
+    // Why " " and ""
+    if (texthint.text != " " && texthint.text != "") {
+        return;
+    }
+
     texthint.set({ alpha: 1 });
-    hint = str;
     texthint.text = hint;
     container.addChild(texthint);
-    createjs.Tween.get(texthint).to({ alpha: 0 }, time).call(function () {
-        texthint.text = " ";
-        texthint.set({ alpha: 1 });
-    });
+    createjs.Tween.get(texthint)
+        .to({ alpha: 0 }, time, createjs.Ease.getPowInOut(5))
+        .call(function () {
+            texthint.text = " ";
+            texthint.set({ alpha: 1 });
+        });
 }
 
 function onbagitemDragged(evt) {

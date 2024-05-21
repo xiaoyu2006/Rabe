@@ -1,0 +1,4 @@
+- [ ] level2缺少引导
+- [ ] fadeout动画问题
+- [ ] 音频不正常切断
+- [ ] Refactor

@@ -28,17 +28,22 @@ function init() {
 
 function init_adjust_screen() {
     canvas = document.getElementById("wrapper");
-    canvas.width = 1920;
-    canvas.height = 1080;
-    if (document.documentElement.clientWidth <= document.documentElement.clientHeight) {
-        //alert("?");
-        screen = 0;
-        //text.set({x:570, y:190, rotation:90});
-        canvas.width = 1080;
-        canvas.height = 1920;
-        container.rotation = 90;
-        container.x = 1080;
-    }
+    // All coordinates are fixed for 1920x1080
+    const W = 1920;
+    const H = 1080;
+    canvas.width = W;
+    canvas.height = H;
+    const autoresize = () => {
+        if (window.innerWidth / window.innerHeight < W / H) {
+            canvas.style.width = "100%";
+            canvas.style.height = "auto";
+        } else {
+            canvas.style.width = "auto";
+            canvas.style.height = "100%";
+        }
+    };
+    window.addEventListener("resize", autoresize);
+    autoresize();
 };
 
 function init_initSceneOne() {
@@ -76,7 +81,7 @@ function loadlevel1() {
     var oHead = document.getElementsByTagName('HEAD').item(0);
     var oScript = document.createElement("script");
     oScript.type = "text/javascript";
-    oScript.src = "app.js";
+    oScript.src = "level1.js";
     document.getElementById("effect").volume = 0.5;
     document.getElementById("myaudio").volume = 0.2;
     document.getElementById("myaudio").src = "sound/m4-1.mp3";
