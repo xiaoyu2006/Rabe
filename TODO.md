@@ -2,3 +2,4 @@
 - [ ] fadeout动画问题
 - [ ] 音频不正常切断
 - [ ] Refactor
+- [ ] 资源Minimize
