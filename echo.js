@@ -21,7 +21,6 @@ var SceneState = 0;
 var SceneOne = 1;
 var loading;
 
-var texthint = new createjs.Text("", "Italic 40px KaiTi", "#fff").set({ x: 190, y: 900 });//提示信息
 var begintext = new createjs.Text("1938年2月底，\n\n拉贝自南京下关坐船前往上海，返回德国。\n\n夕阳下的码头，浪水冲击着船身。\n\n拉贝似乎仍看见难民带着泪水与惊恐，与他依依惜别。\n\n\"再见，我心底里深爱过的南京。\""
     , "Italic 50px KaiTi", "#fff").set({ x: 100, y: 100 });
 var museumtext = new createjs.Text("斯人远逝，大爱犹存。进入博物馆，\n\n了解拉贝故事发现的经历和拉贝精神在今天的传播。"
@@ -218,7 +217,6 @@ function init() {
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", stage);
     createjs.Ticker.addEventListener("tick", handleTick);
-    duniao_adjust_screen();
     initSceneOne();
 }
 
@@ -229,22 +227,6 @@ function handleTick() {
 function ending() {
     location.reload();
 }
-
-function duniao_adjust_screen() {
-    canvas = document.getElementById("wrapper");
-    canvas.width = 1920;
-    canvas.height = 1080;
-    if (document.documentElement.clientWidth <= document.documentElement.clientHeight) {
-        //alert("?");
-        screen = 0;
-        //text.set({x:570, y:190, rotation:90});
-        canvas.width = 1080;
-        canvas.height = 1920;
-        container.rotation = 90;
-        container.x = 1080;
-        isMobile = true;
-    }
-};
 
 function initSceneOne() {
     Queue.on("complete", HandleCompleteSceneOne, this);

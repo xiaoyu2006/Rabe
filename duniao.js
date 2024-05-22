@@ -22,7 +22,6 @@ var SceneState = 0;
 var SceneOne = 1;
 var loading;
 
-var texthint = new createjs.Text("", "Italic 40px KaiTi", "#fff").set({ x: 190, y: 900 });//提示信息
 var textSceneone = new createjs.Text("水手从遥远的东方紧急赶来，\n\n在海上鸣响汽笛迎接他新生的孩子。\n\n那时他不曾预想：\n\n日后，小拉贝会像楼顶那只善飞的渡鸟一样，\n\n游走世界各地，飞得那么高，那么远，\n\n并深深奉献于他曾经去往的中国。"
     , "Italic 50px KaiTi", "#fff").set({ x: 100, y: 100 });
 var textSceneTwo = new createjs.Text("童年时，父亲从中国带回的那些传说和艺术品，\n\n就像一些文明的种子播撒在拉贝心中。\n\n他兴奋于能有一份工作，让他领略东方古国文化的神韵。\n\n1918年，拉贝远渡重洋，来到了心仪已久的北京。"
@@ -254,30 +253,12 @@ function init() {
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", stage);
     createjs.Ticker.addEventListener("tick", handleTick);
-    duniao_adjust_screen();
     initSceneOne();
 }
 
 function handleTick() {
     //itemHeld = null;
 }
-
-function duniao_adjust_screen() {
-    canvas = document.getElementById("wrapper");
-    canvas.width = 1920;
-    canvas.height = 1080;
-    if (document.documentElement.clientWidth <= document.documentElement.clientHeight) {
-        //alert("?");
-        screen = 0;
-        //text.set({x:570, y:190, rotation:90});
-        canvas.width = 1080;
-        canvas.height = 1920;
-        container.rotation = 90;
-        container.x = 1080;
-        isMobile = true;
-    }
-};
-
 function initSceneOne() {
     Queue.on("complete", HandleCompleteSceneOne, this);
     Queue.on("progress", HandleProgress, this);
@@ -441,7 +422,6 @@ function onScenefourClick() {
         else {
             showHint("去拍照吧", 2000);
             objects["Scenefour"].removeEventListener("click", onScenefourClick);
-
         }
     }
 }
@@ -598,21 +578,6 @@ function drawSceneSeven() {
 
 function ending() {
     location.reload();
-}
-
-function showHint(str, time) {
-    texthint.set({ alpha: 1 });
-    hint = str;
-    texthint.text = hint;
-    container.addChild(texthint);
-    createjs.Tween.get(texthint).to({ alpha: 0 }, time).call(function () {
-        texthint.text = " ";
-        texthint.set({ alpha: 1 });
-    });
-}
-function removeHint() {
-    texthint.text = " ";
-    texthint.set({ alpha: 1 });
 }
 
 function onSceneoneClicked() {

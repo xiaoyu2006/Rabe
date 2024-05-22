@@ -25,7 +25,6 @@ var dianum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //数字按钮id
 var inputnumber = "";//输入的号码
 var textnumber = new createjs.Text(inputnumber, "Italic 150px KaiTi", "#fff").set({ x: 190, y: 470 });//显示的号码
 //var text = container.addChild(new createjs.Text("加载中...", "150px Times", "#fff").set({x:190, y:470}));
-var texthint = new createjs.Text("", "Italic 40px KaiTi", "#fff").set({ x: 190, y: 900 });//提示信息
 var begintext = new createjs.Text("南京沦陷后，日军在城内烧杀抢掠，\n\n拉贝凭借自己特殊的身份驱逐行凶作恶的日本士兵，\n\n保护和救助安全区内外的平民。\n\n同时以战时日记的形式记录日军暴行，\n\n并多次发送给日本大使馆表示抗议。"
     , "Italic 50px KaiTi", "#fff").set({ x: 100, y: 100 });
 var endingtext = new createjs.Text("黑夜里的烛光虽然微弱，\n\n却坚定地照亮一方。\n\n人性的温度能穿越时光，\n\n激励不忘历史的后人。"
@@ -727,22 +726,6 @@ function onbagitemDraggedEnd(evt) {
     }
 }
 
-function showHint(hint, time) {
-    // Why " " and ""
-    if (texthint.text != " " && texthint.text != "") {
-        return;
-    }
-
-    texthint.set({ alpha: 1 });
-    texthint.text = hint;
-    container.addChild(texthint);
-    createjs.Tween.get(texthint)
-        .to({ alpha: 0 }, time, createjs.Ease.getPowInOut(5))
-        .call(function () {
-            texthint.text = " ";
-            texthint.set({ alpha: 1 });
-        });
-}
 
 function onbagitemDragged(evt) {
     if (!isMobile) {
