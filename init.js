@@ -1,6 +1,4 @@
 /////////////////////////////////////// globals /////////////////////////////////////////////
-var canvasX = 1920;
-var canvasY = 1080;
 var stage = new createjs.Stage("wrapper");
 var container = new createjs.Container();
 var objects = {};
@@ -22,11 +20,11 @@ function init() {
     stage.update();
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", stage);
-    init_adjust_screen();
+    init_adjustScreen();
     init_initSceneOne();
 }
 
-function init_adjust_screen() {
+function init_adjustScreen() {
     canvas = document.getElementById("wrapper");
     // All coordinates are fixed for 1920x1080
     const W = 1920;
@@ -47,7 +45,7 @@ function init_adjust_screen() {
 };
 
 function init_initSceneOne() {
-    Queue.on("complete", init_HandleCompleteSceneOne, this);
+    Queue.on("complete", init_handleCompleteSceneOne, this);
     Queue.loadManifest([
         { id: "init", src: "img/init.png" },
         { id: "init_select", src: "img/init_select.png" },
@@ -55,7 +53,7 @@ function init_initSceneOne() {
 }
 
 
-function init_HandleCompleteSceneOne() {
+function init_handleCompleteSceneOne() {
     objects["init"] = new createjs.Bitmap(Queue.getResult("init")).set({ scaleX: 0.24, scaleY: 0.24 });
 
     var but1 = new createjs.Shape(); objects["but1"] = but1;
@@ -75,71 +73,28 @@ function init_drawSceneOne() {
     stage.update();
 }
 
-function loadlevel1() {
-    pauseAudio();
-    removeelements();
-    var oHead = document.getElementsByTagName('HEAD').item(0);
-    var oScript = document.createElement("script");
-    oScript.type = "text/javascript";
-    oScript.src = "level1.js";
-    document.getElementById("effect").volume = 0.5;
-    document.getElementById("myaudio").volume = 0.2;
-    document.getElementById("myaudio").src = "sound/m4-1.mp3";
-    document.getElementById("myaudio").play();
-    oHead.appendChild(oScript);
+function defLoadlevel(js, sound) {
+    return () => {
+        pauseAudio();
+        removeelements();
+        var oHead = document.getElementsByTagName('HEAD').item(0);
+        var oScript = document.createElement("script");
+        oScript.type = "text/javascript";
+        oScript.src = js;
+        document.getElementById("effect").volume = 0.5;
+        document.getElementById("myaudio").volume = 0.2;
+        document.getElementById("myaudio").src = sound;
+        document.getElementById("myaudio").play();
+        oHead.appendChild(oScript);
+    };
 }
-function loadlevel2() {
-    pauseAudio();
-    removeelements();
-    var oHead = document.getElementsByTagName('HEAD').item(0);
-    var oScript = document.createElement("script");
-    oScript.type = "text/javascript";
-    oScript.src = "level2.js";
-    document.getElementById("effect").volume = 0.5;
-    document.getElementById("myaudio").volume = 0.2;
-    document.getElementById("myaudio").src = "sound/m5.mp3";
-    document.getElementById("myaudio").play();
-    oHead.appendChild(oScript);
-}
-function loadlevel3() {
-    pauseAudio();
-    removeelements();
-    var oHead = document.getElementsByTagName('HEAD').item(0);
-    var oScript = document.createElement("script");
-    oScript.type = "text/javascript";
-    oScript.src = "level3.js";
-    document.getElementById("effect").volume = 0.5;
-    document.getElementById("myaudio").volume = 0.2;
-    document.getElementById("myaudio").src = "sound/m6-2.mp3";
-    document.getElementById("myaudio").play();
-    oHead.appendChild(oScript);
-}
-function loadduniao() {
-    pauseAudio();
-    removeelements();
-    var oHead = document.getElementsByTagName('HEAD').item(0);
-    var oScript = document.createElement("script");
-    oScript.type = "text/javascript";
-    oScript.src = "duniao.js";
-    document.getElementById("effect").volume = 0.5;
-    document.getElementById("myaudio").volume = 0.2;
-    document.getElementById("myaudio").src = "sound/m2.mp3";
-    document.getElementById("myaudio").play();
-    oHead.appendChild(oScript);
-}
-function loadecho() {
-    pauseAudio();
-    removeelements();
-    var oHead = document.getElementsByTagName('HEAD').item(0);
-    var oScript = document.createElement("script");
-    oScript.type = "text/javascript";
-    oScript.src = "echo.js";
-    document.getElementById("effect").volume = 0.5;
-    document.getElementById("myaudio").volume = 0.2;
-    document.getElementById("myaudio").src = "sound/m7.mp3";
-    document.getElementById("myaudio").play();
-    oHead.appendChild(oScript);
-}
+
+const loadlevel1 = defLoadlevel("level1.js", "sound/m4-1.mp3");
+const loadlevel2 = defLoadlevel("level2.js", "sound/m5.mp3");
+const loadlevel3 = defLoadlevel("level3.js", "sound/m6-2.mp3");
+const loadduniao = defLoadlevel("duniao.js", "sound/m2.mp3");
+const loadecho = defLoadlevel("echo.js", "sound/m7.mp3");
+
 function removeelements() {
     container.removeChild(objects["but1"]);
     container.removeChild(objects["but2"]);

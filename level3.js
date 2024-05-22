@@ -1,6 +1,4 @@
 /////////////////////////////////////// globals /////////////////////////////////////////////
-var canvasX = 1920;
-var canvasY = 1080;
 var stage = new createjs.Stage("wrapper");
 var container = new createjs.Container();
 var objects = {};
@@ -8,8 +6,7 @@ var rects = [];//diary turn window
 var bg;
 var Queue = new createjs.LoadQueue();
 var isMobile = false;
-var loading;
-var progressnum = 0;
+progressnum = 0;
 
 var COMPLETED = 2;
 var READY = 1;
@@ -221,7 +218,6 @@ function init() {
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", stage);
     createjs.Ticker.addEventListener("tick", handleTick);
-    level3_adjust_screen();
     initSceneOne();
 }
 
@@ -230,8 +226,8 @@ function handleTick() {
 }
 
 function initSceneOne() {
-    Queue.on("complete", HandleCompleteSceneOne, this);
-    Queue.on("progress", HandleProgress, this);
+    Queue.on("complete", handleCompleteSceneOne, this);
+    Queue.on("progress", handleProgress, this);
     Queue.loadManifest([
         { id: "bgindoor", src: "img/level3/indoor/bgindoor.png" },
         { id: "armband", src: "img/level3/indoor/armband.png" },
@@ -260,42 +256,16 @@ function initSceneOne() {
 }
 
 function initSceneTwo() {
-    // Queue.on("complete", HandleCompleteSceneTwo, this); 
+    // Queue.on("complete", handleCompleteSceneTwo, this); 
     // Queue.loadManifest([
     //     {id:"bgoutdoor", src:"img/level3/outdoor/bgoutdoor.jpg"},
     //     {id:"door", src:"img/level3/outdoor/door.jpg"}
     // ]);
-    HandleCompleteSceneTwo();
+    handleCompleteSceneTwo();
 
 }
 
-function level3_adjust_screen() {
-    canvas = document.getElementById("wrapper");
-    canvas.width = 1920;
-    canvas.height = 1080;
-    if (document.documentElement.clientWidth <= document.documentElement.clientHeight) {
-        //alert("?");
-        screen = 0;
-        //text.set({x:570, y:190, rotation:90});
-        canvas.width = 1080;
-        canvas.height = 1920;
-        container.rotation = 90;
-        container.x = 1080;
-        isMobile = true;
-    }
-};
-
-
-function HandleProgress() {
-    let num = `${Math.floor(Queue.progress * 100)}%`;
-    progressnum = num;
-    container.removeChild(loading)
-    loading = new createjs.Text("正在打开日记...  " + progressnum, "150px kaiti", "#fff").set({ x: 190, y: 470 });
-    var text = container.addChild(loading);
-    stage.update();
-}
-
-function HandleCompleteSceneOne() {
+function handleCompleteSceneOne() {
     //搭建第一个室内场景
     //静态预加载物品
     loading.set({ alpha: 0 });
@@ -395,7 +365,7 @@ function drawSceneOne() {
     stage.update();
 }
 
-function HandleCompleteSceneTwo() {
+function handleCompleteSceneTwo() {
     objects["bg"] = new createjs.Bitmap(Queue.getResult("bgoutdoor"));
     objects["door"] = new createjs.Bitmap(Queue.getResult("door")).set({ x: 880, y: 300, scaleX: 0.3, scaleY: 0.3, alpha: 0.01 });
     objects["mailbox"] = new createjs.Bitmap(Queue.getResult("mailbox")).set({ x: 420, y: 300, scaleX: 0.23, scaleY: 0.45, alpha: 0.01 });

@@ -1,6 +1,4 @@
 /////////////////////////////////////// globals /////////////////////////////////////////////
-var canvasX = 1920;
-var canvasY = 1080;
 var stage = new createjs.Stage("wrapper");
 var container = new createjs.Container();
 var objects = {};
@@ -16,10 +14,9 @@ var itemHeld = null;
 
 var audioName;
 
-var progressnum = 0;
+progressnum = 0;
 var SceneState = 0;
 var SceneOne = 1;
-var loading;
 
 var begintext = new createjs.Text("1938年2月底，\n\n拉贝自南京下关坐船前往上海，返回德国。\n\n夕阳下的码头，浪水冲击着船身。\n\n拉贝似乎仍看见难民带着泪水与惊恐，与他依依惜别。\n\n\"再见，我心底里深爱过的南京。\""
     , "Italic 50px KaiTi", "#fff").set({ x: 100, y: 100 });
@@ -229,8 +226,8 @@ function ending() {
 }
 
 function initSceneOne() {
-    Queue.on("complete", HandleCompleteSceneOne, this);
-    Queue.on("progress", HandleProgress, this);
+    Queue.on("complete", handleCompleteSceneOne, this);
+    Queue.on("progress", handleProgress, this);
     Queue.loadManifest([
         { id: "dock", src: "img/echo/dock.png" },
         { id: "rabe", src: "img/echo/rabe.png" },
@@ -250,20 +247,10 @@ function initSceneOne() {
 }
 
 function initSceneTwo() {
-    HandleCompleteSceneTwo();
+    handleCompleteSceneTwo();
 }
 
-function HandleProgress() {
-    loading.set({ alpha: 1 });
-    let num = `${Math.floor(Queue.progress * 100)}%`;
-    progressnum = num;
-    container.removeChild(loading)
-    loading = new createjs.Text("正在打开日记...  " + progressnum, "150px kaiti", "#fff").set({ x: 190, y: 470 });
-    var text = container.addChild(loading);
-    stage.update();
-}
-
-function HandleCompleteSceneOne() {
+function handleCompleteSceneOne() {
     loading.set({ alpha: 0 });
 
     progressnum = 0;
@@ -274,7 +261,7 @@ function HandleCompleteSceneOne() {
     drawSceneOne();
 }
 
-function HandleCompleteSceneTwo() {
+function handleCompleteSceneTwo() {
     loading.set({ alpha: 0 });
 
     progressnum = 0;

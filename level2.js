@@ -1,6 +1,4 @@
 /////////////////////////////////////// globals /////////////////////////////////////////////
-var canvasX = 1920;
-var canvasY = 1080;
 var stage = new createjs.Stage("wrapper");
 var container = new createjs.Container();
 var objects = {};
@@ -16,11 +14,10 @@ var DISABLED = 0;
 
 var itemHeld = null;
 
-var progressnum = 0;
+progressnum = 0;
 var SceneState = 0;
 var SceneOne = 1;
 var SceneMap = 10;
-var loading;
 var diaryState = 0;
 //var text = container.addChild(new createjs.Text("加载中...", "150px Times", "#fff").set({x:190, y:470}));
 var endingtext = new createjs.Text("金陵城内仍炮火阵阵，\n\n1937年南京的冬天似乎格外寒冷漫长，\n\n但善良救助的脚步始终没有因此退缩。"
@@ -209,7 +206,6 @@ function init() {
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", stage);
     createjs.Ticker.addEventListener("tick", handleTick);
-    level2_adjust_screen();
     initSceneOne();
 }
 
@@ -217,24 +213,9 @@ function handleTick() {
     //itemHeld = null;
 }
 
-function level2_adjust_screen() {
-    canvas = document.getElementById("wrapper");
-    canvas.width = 1920;
-    canvas.height = 1080;
-    if (document.documentElement.clientWidth <= document.documentElement.clientHeight) {
-        screen = 0;
-        //text.set({x:570, y:190, rotation:90});
-        canvas.width = 1080;
-        canvas.height = 1920;
-        container.rotation = 90;
-        container.x = 1080;
-        isMobile = true;
-    }
-};
-
 function initSceneOne() {
-    Queue.on("complete", HandleCompleteSceneOne, this);
-    Queue.on("progress", HandleProgress, this);
+    Queue.on("complete", handleCompleteSceneOne, this);
+    Queue.on("progress", handleProgress, this);
     Queue.loadManifest([
         { id: "Sceneone", src: "img/level2/Sceneone.png" },
         { id: "diaryone", src: "img/level2/diary/diaryone.png" },
@@ -256,16 +237,7 @@ function initSceneOne() {
     ]);
 }
 
-function HandleProgress() {
-    let num = `${Math.floor(Queue.progress * 100)}%`;
-    progressnum = num;
-    container.removeChild(loading)
-    loading = new createjs.Text("正在打开日记...  " + progressnum, "150px kaiti", "#fff").set({ x: 190, y: 470 });
-    var text = container.addChild(loading);
-    stage.update();
-}
-
-function HandleCompleteSceneOne() {
+function handleCompleteSceneOne() {
     progressnum = 0;
     loading.set({ alpha: 0 });
 

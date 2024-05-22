@@ -1,6 +1,4 @@
 /////////////////////////////////////// globals /////////////////////////////////////////////
-var canvasX = 1920;
-var canvasY = 1080;
 var stage = new createjs.Stage("wrapper");
 var container = new createjs.Container();
 var objects = {};
@@ -8,19 +6,18 @@ var rects = [];//diary turn window
 var bg;
 var Queue = new createjs.LoadQueue();
 var isMobile = false;
-var COMPLETED = 2;
-var READY = 1;
-var DISABLED = 0;
+const COMPLETED = 2;
+const READY = 1;
+const DISABLED = 0;
 
 var itemHeld = null;
 
 var ravenmove;
 var ravenmovedir = 1;
 
-var progressnum = 0;
+progressnum = 0;
 var SceneState = 0;
 var SceneOne = 1;
-var loading;
 
 var textSceneone = new createjs.Text("水手从遥远的东方紧急赶来，\n\n在海上鸣响汽笛迎接他新生的孩子。\n\n那时他不曾预想：\n\n日后，小拉贝会像楼顶那只善飞的渡鸟一样，\n\n游走世界各地，飞得那么高，那么远，\n\n并深深奉献于他曾经去往的中国。"
     , "Italic 50px KaiTi", "#fff").set({ x: 100, y: 100 });
@@ -260,8 +257,8 @@ function handleTick() {
     //itemHeld = null;
 }
 function initSceneOne() {
-    Queue.on("complete", HandleCompleteSceneOne, this);
-    Queue.on("progress", HandleProgress, this);
+    Queue.on("complete", handleCompleteSceneOne, this);
+    Queue.on("progress", handleProgress, this);
     Queue.loadManifest([
         { id: "Sceneone", src: "img/duniao/Sceneone.png" },
         { id: "AsiaEuroMap", src: "img/duniao/AsiaEuroMap.png" },
@@ -289,40 +286,30 @@ function initSceneOne() {
 }
 
 function initSceneTwo() {
-    HandleCompleteSceneTwo();
+    handleCompleteSceneTwo();
 }
 
 function initSceneThree() {
-    HandleCompleteSceneThree();
+    handleCompleteSceneThree();
 }
 
 function initSceneFour() {
-    HandleCompleteSceneFour();
+    handleCompleteSceneFour();
 }
 
 function initSceneFive() {
-    HandleCompleteSceneFive();
+    handleCompleteSceneFive();
 }
 
 function intitSceneSix() {
-    HandleCompleteSceneSix();
+    handleCompleteSceneSix();
 }
 
 function intitSceneSeven() {
-    HandleCompleteSceneSeven();
+    handleCompleteSceneSeven();
 }
 
-function HandleProgress() {
-    loading.set({ alpha: 1 });
-    let num = `${Math.floor(Queue.progress * 100)}%`;
-    progressnum = num;
-    container.removeChild(loading)
-    loading = new createjs.Text("正在打开日记...  " + progressnum, "150px kaiti", "#fff").set({ x: 190, y: 470 });
-    var text = container.addChild(loading);
-    stage.update();
-}
-
-function HandleCompleteSceneOne() {
+function handleCompleteSceneOne() {
     loading.set({ alpha: 0 });
 
     playEffect("e1.wav", 0);
@@ -338,7 +325,7 @@ function HandleCompleteSceneOne() {
     drawSceneOne();
 }
 
-function HandleCompleteSceneTwo() {
+function handleCompleteSceneTwo() {
     clearScreen();
 
     loading.set({ alpha: 0 });
@@ -359,7 +346,7 @@ function HandleCompleteSceneTwo() {
     drawSceneTwo();
 }
 
-function HandleCompleteSceneThree() {
+function handleCompleteSceneThree() {
     clearScreen();
 
     loading.set({ alpha: 0 });
@@ -372,7 +359,7 @@ function HandleCompleteSceneThree() {
 }
 
 var ScenefourTimer = 0;
-function HandleCompleteSceneFour() {
+function handleCompleteSceneFour() {
     clearScreen();
 
     loading.set({ alpha: 0 });
@@ -426,7 +413,7 @@ function onScenefourClick() {
     }
 }
 
-function HandleCompleteSceneFive() {
+function handleCompleteSceneFive() {
     clearScreen();
 
     loading.set({ alpha: 0 });
@@ -441,7 +428,7 @@ function HandleCompleteSceneFive() {
     drawSceneFive();
 }
 
-function HandleCompleteSceneSix() {
+function handleCompleteSceneSix() {
     clearScreen();
 
     loading.set({ alpha: 0 });
@@ -453,7 +440,7 @@ function HandleCompleteSceneSix() {
     drawSceneSix();
 }
 
-function HandleCompleteSceneSeven() {
+function handleCompleteSceneSeven() {
     clearScreen();
 
     loading.set({ alpha: 0 });

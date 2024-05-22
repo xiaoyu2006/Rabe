@@ -1,35 +1,19 @@
 var stage = new createjs.Stage("wrapper");
-var canvasX = 1920;
-var canvasY = 1080;
 createjs.Touch.enable(stage);
 var container = new createjs.Container();
 stage.addChild(container);
 loading = new createjs.Text("正在打开日记...  " + progressnum, "150px kaiti", "#fff").set({ x: 190, y: 470 });
 var text = container.addChild(loading);
 stage.update();
-var progressnum = 0;
+progressnum = 0;
 createjs.Ticker.setFPS(30);
 createjs.Ticker.addEventListener("tick", stage);
 var screen = 1;
-var loading;
 var begintext = new createjs.Text("1937年9月7日下午，\n\n一辆人力车停在了南京广州路小粉桥1号门前，\n\n从北方回来风尘仆仆的拉贝按响了门铃。\n\n他看到院子有一个简陋的防空洞，\n\n这是公司职员为对付来自头顶的狂轰滥炸一起挖的。\n\n敌机飞临南京上空了！"
     , "Italic 50px KaiTi", "#fff").set({ x: 100, y: 100 });
 var endingtext = new createjs.Text("这灾难前夕的片刻安宁已经结束，\n\n1937年南京12月凛冬的雪正飘飘洒洒地落下来。"
     , "Italic 50px KaiTi", "#fff").set({ x: 100, y: 100 });
-function adjust_screen() {
-    canvas = document.getElementById("wrapper");
-    canvas.width = 1920;
-    canvas.height = 1080;
-    if (document.documentElement.clientWidth <= document.documentElement.clientHeight) {
-        //alert("?");
-        screen = 0;
-        //text.set({x:570, y:190, rotation:90});
-        canvas.width = 1080;
-        canvas.height = 1920;
-        container.rotation = 90;
-        container.x = 1080;
-    }
-}; adjust_screen();
+
 
 /*var box_close_img = new Image();
 box_close_img.src = "img/indoor.png";
@@ -47,7 +31,7 @@ var rects = [];//diary turn window
 var timer;
 var bg;
 var pressing = 0, pressx, pressy;
-function f() { };
+
 function calculateX(e) {
     if (screen == 0) {
         return e.stageY;
@@ -65,9 +49,11 @@ function calculateY(e) {
     }
 }
 
+// FIXME: Confusing Quene + HandleComplete / queue + handleComplete
+
 var Queue = new createjs.LoadQueue();
 Queue.on("complete", HandleComplete, this);
-Queue.on("progress", HandleProgress, this);
+Queue.on("progress", handleProgress, this);
 Queue.loadManifest([
     { id: "bgm", src: "sound/bgm.m4a" },
     { id: "box_sound", src: "sound/box.wav" },
@@ -79,15 +65,7 @@ Queue.loadManifest([
     { id: "pointer", src: "img/pointer.png" },
     { id: "mession", src: "img/mession.png" }
 ]);
-function HandleProgress() {
-    loading.set({ alpha: 1 });
-    let num = `${Math.floor(Queue.progress * 100)}%`;
-    progressnum = num;
-    container.removeChild(loading)
-    loading = new createjs.Text("正在打开日记...  " + progressnum, "150px kaiti", "#fff").set({ x: 190, y: 470 });
-    var text = container.addChild(loading);
-    stage.update();
-}
+
 function HandleComplete() {
     loading.set({ alpha: 0 });
     container.addChild(begintext);
@@ -105,7 +83,6 @@ function HandleComplete() {
                     bg.removeEventListener("click", arguments.callee);
                     createjs.Tween.get(container).to({ alpha: 0 }, 1000).call(function () {
                         var element = document.getElementById("main");
-                        adjust_screen();
                         container.removeChild(bg);
                         container.addChild(things[0]);
                     }).to({ alpha: 1 }, 1000);
@@ -136,9 +113,6 @@ function HandleComplete() {
             })
         })
     })
-
-
-
 }
 
 function pauseAudio() {
