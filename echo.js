@@ -5,7 +5,6 @@ var objects = {};
 var rects = [];//diary turn window
 var bg;
 var Queue = new createjs.LoadQueue();
-var isMobile = false;
 var COMPLETED = 2;
 var READY = 1;
 var DISABLED = 0;

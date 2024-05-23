@@ -3,4 +3,4 @@
 - [ ] 音频不正常切断
 - [ ] Refactor
 - [ ] 资源Minimize
-- [ ] 移除isMobile
+- [x] 移除isMobile
