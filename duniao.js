@@ -233,7 +233,9 @@ class TaskController {
             }
         }
     }
-} var controller = new TaskController();
+}
+
+var controller = new TaskController();
 
 /////////////////////////////////////// methods /////////////////////////////////////////////
 function init() {
@@ -886,15 +888,6 @@ function scene5end() {
             });
         });
     });
-}
-
-function playEffect(str, timegap) {
-    document.getElementById("effect").src = "sound/" + str;
-    document.getElementById("effect").play();
-}
-
-function pauseAudio() {
-    document.getElementById("effect").pause();
 }
 
 function clearScreen() {

@@ -626,27 +626,10 @@ function onphoto7Clicked() {
     })
 }
 
-
-
-
-
-
-
-
 function clearScreen() {
     for (var i; i < objects.length; ++i) {
         container.removeChild(objects[i]);
     }
-}
-
-function playEffect(str, timegap) {
-    document.getElementById("effect").src = "sound/" + str;
-    document.getElementById("effect").play();
-    document.getElementById("effect").volume = 0.8;
-}
-
-function pauseAudio() {
-    document.getElementById("effect").stop();
 }
 
 function removeHint() {

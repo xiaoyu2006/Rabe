@@ -73,37 +73,6 @@ function init_drawSceneOne() {
     stage.update();
 }
 
-function defLoadlevel(js, sound) {
-    return () => {
-        pauseAudio();
-        removeelements();
-        var oHead = document.getElementsByTagName('HEAD').item(0);
-        var oScript = document.createElement("script");
-        oScript.type = "text/javascript";
-        oScript.src = js;
-        document.getElementById("effect").volume = 0.5;
-        document.getElementById("myaudio").volume = 0.2;
-        document.getElementById("myaudio").src = sound;
-        document.getElementById("myaudio").play();
-        oHead.appendChild(oScript);
-    };
-}
-
-const loadlevel1 = defLoadlevel("level1.js", "sound/m4-1.mp3");
-const loadlevel2 = defLoadlevel("level2.js", "sound/m5.mp3");
-const loadlevel3 = defLoadlevel("level3.js", "sound/m6-2.mp3");
-const loadduniao = defLoadlevel("duniao.js", "sound/m2.mp3");
-const loadecho = defLoadlevel("echo.js", "sound/m7.mp3");
-
-function removeelements() {
-    container.removeChild(objects["but1"]);
-    container.removeChild(objects["but2"]);
-    container.removeChild(objects["but3"]);
-    container.removeChild(objects["but4"]);
-    container.removeChild(objects["but5"]);
-    container.removeChild(objects["but6"]);
-    container.removeChild(objects["init"]);
-}
 function removejscssfile(filename, filetype) {
 
     var targetelement = (filetype == "js") ? "script" : (filetype == "css") ? "link" : "none"
@@ -121,14 +90,7 @@ function removejscssfile(filename, filetype) {
     }
 
 }
-function playEffect(str, timegap) {
-    document.getElementById("effect").src = "sound/" + str;
-    document.getElementById("effect").play();
-    document.getElementById("effect").volume = 0.8;
-}
-function pauseAudio() {
-    document.getElementById("effect").pause();
-}
+
 function onbut1Clicked() {
     container.removeChild(objects["init"]);
     objects["init"] = new createjs.Bitmap(Queue.getResult("init_select")).set({ scaleX: 0.5, scaleY: 0.5 });
