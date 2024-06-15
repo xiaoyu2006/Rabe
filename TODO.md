@@ -1,5 +1,5 @@
 - [ ] level2缺少引导
-- [ ] fadeout动画问题
+- [ ] 动画重复加载 
 - [ ] 音频不正常切断
 - [ ] Refactor
 - [ ] 资源Minimize

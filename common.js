@@ -1,6 +1,6 @@
 // TODO: Most of the systems are maintained by global vars.
 
-// MARK: Constants
+// == Constants
 
 const canvasX = 1920;
 const canvasY = 1080;
@@ -14,7 +14,7 @@ window.mobileCheck = () => {
 
 const isMobile = mobileCheck();
 
-// MARK: Hint
+// == Hint
 
 var texthint = new createjs.Text("", "Italic 40px KaiTi", "#fff").set({ x: 190, y: 900 });//提示信息
 
@@ -54,7 +54,7 @@ function handleProgress() {
     stage.update();
 }
 
-// MARK: Audio
+// == Audio
 
 function playEffect(str, timegap = 0) {
     document.getElementById("effect").src = "sound/" + str;
@@ -62,7 +62,7 @@ function playEffect(str, timegap = 0) {
 }
 
 function pauseAudio() {
-    document.getElementById("effect").stop();
+    document.getElementById("effect").pause();
 }
 
 function removeElements() {
@@ -75,7 +75,7 @@ function removeElements() {
     container.removeChild(objects["init"]);
 }
 
-// MARK: LoadLevels
+// == LoadLevels
 
 function defLoadlevel(js, sound) {
     return () => {
@@ -99,3 +99,11 @@ const loadlevel3 = defLoadlevel("level3.js", "sound/m6-2.mp3");
 const loadduniao = defLoadlevel("duniao.js", "sound/m2.mp3");
 const loadecho = defLoadlevel("echo.js", "sound/m7.mp3");
 
+// == Hackish eventListener
+
+function onOnce(target, type, f) {
+    target.addEventListener(type, function g(event) {
+        f.call(target, event);
+        target.removeEventListener(type, g);
+    });
+};

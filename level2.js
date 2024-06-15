@@ -442,7 +442,6 @@ function onphotoClicked() {
 }
 
 function onphotoframeTriggered(evt) {
-
     if ((itemHeld != null && itemHeld.name == "photo") || (isMobile && bag.getItem("photo") != null)) {
         bag.removeItem("photo");
         objects["photoframe"].alpha = 1;

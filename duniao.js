@@ -336,8 +336,8 @@ function handleCompleteSceneTwo() {
     objects["AsiaEuroMap"] = new createjs.Bitmap(Queue.getResult("AsiaEuroMap")).set({ alpha: 0, x: 100, scaleX: 0.21, scaleY: 0.21 });
     objects["raven"] = new createjs.Bitmap(Queue.getResult("raven")).set({ alpha: 0, x: 450, y: 300, scaleX: 0.04, scaleY: 0.04 });
 
-    objects["raven"].addEventListener("click", onRavenClicked);
-    objects["AsiaEuroMap"].addEventListener("click", onRavenClicked);
+    onOnce(objects["raven"], "click", onRavenClicked);
+    onOnce(objects["AsiaEuroMap"], "click", onRavenClicked);
 
     ravenmove = setInterval(function () {
         ravenmovedir = -ravenmovedir;
@@ -566,6 +566,7 @@ function drawSceneSeven() {
 
 function ending() {
     location.reload();
+    // loadlevel1();
 }
 
 function onSceneoneClicked() {
@@ -589,7 +590,6 @@ function onSceneoneClicked() {
 
 function onRavenClicked() {
     clearInterval(ravenmove);
-    objects["raven"].removeEventListener("click", onRavenClicked);
     createjs.Tween.get(objects["raven"]).to({ guide: { path: [450, 300, 460, 500, 600, 700, 900, 750, 1200, 650] } }, 6000).call(function () {
         createjs.Tween.get(objects["raven"]).to({ alpha: 0 }, 1000);
         createjs.Tween.get(objects["AsiaEuroMap"]).to({ alpha: 0 }, 1000);

@@ -4,10 +4,6 @@ var container = new createjs.Container();
 var objects = {};
 var Queue = new createjs.LoadQueue();
 
-/////////////////////////////////////// class /////////////////////////////////////////////
-
-
-
 /////////////////////////////////////// methods /////////////////////////////////////////////
 function init() {
     createjs.MotionGuidePlugin.install();
@@ -52,7 +48,6 @@ function init_initSceneOne() {
     ]);
 }
 
-
 function init_handleCompleteSceneOne() {
     objects["init"] = new createjs.Bitmap(Queue.getResult("init")).set({ scaleX: 0.24, scaleY: 0.24 });
 
@@ -73,8 +68,7 @@ function init_drawSceneOne() {
     stage.update();
 }
 
-function removejscssfile(filename, filetype) {
-
+function removejscssfile(filename, filetype) {``
     var targetelement = (filetype == "js") ? "script" : (filetype == "css") ? "link" : "none"
 
     var targetattr = (filetype == "js") ? "src" : (filetype == "css") ? "href" : "none"
