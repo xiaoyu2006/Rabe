@@ -262,7 +262,7 @@ function initSceneOne() {
     Queue.on("progress", handleProgress, this);
     Queue.loadManifest([
         { id: "Sceneone", src: "img/duniao/Sceneone.png" },
-        { id: "AsiaEuroMap", src: "img/duniao/AsiaEuroMap.png" },
+        { id: "AsiaEuroMap", src: "img/duniao/AsiaEuroMap.jpg" },
         { id: "raven", src: "img/duniao/raven.png" },
         { id: "FrontDoor", src: "img/duniao/FrontDoor.png" },
         { id: "Scenefour", src: "img/duniao/Scenefour.png" },
@@ -281,7 +281,7 @@ function initSceneOne() {
         { id: "oldphoto3", src: "img/duniao/o3.jpg" },
         { id: "oldphoto4", src: "img/duniao/o4.jpg" },
         { id: "family", src: "img/duniao/family.jpg" },
-        { id: "orgfile", src: "img/duniao/orgfile.jpg" },
+        { id: "orgfile", src: "img/duniao/orgfile.png" },
         { id: "map", src: "img/duniao/map.png" }
     ]);
 }
