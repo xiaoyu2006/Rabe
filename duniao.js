@@ -339,7 +339,7 @@ function handleCompleteSceneTwo() {
     onOnce(objects["raven"], "click", onRavenClicked);
     onOnce(objects["AsiaEuroMap"], "click", onRavenClicked);
 
-    ravenmove = setInterval(() => {
+    ravenmove = setInterval(function () {
         ravenmovedir = -ravenmovedir;
         createjs.Tween.get(objects["raven"]).to({ y: objects["raven"].y + ravenmovedir * 40 }, 2000);
     }, 2000);
@@ -473,7 +473,7 @@ function drawSceneTwo() {
 
 function drawSceneThree() {
     container.addChild(objects["FrontDoor"]).set({ alpha: 0 });
-    createjs.Tween.get(objects["FrontDoor"]).to({ alpha: 1 }, 2000).call(() => {
+    createjs.Tween.get(objects["FrontDoor"]).to({ alpha: 1 }, 2000).call(function () {
         onOnce(objects["FrontDoor"], "click", onFrontDoorClicked);
     });
 }
@@ -484,7 +484,7 @@ function drawSceneFour() {
     container.addChild(objects["camera"]);
     createjs.Tween.get(objects["files"])
         .to({ alpha: 1 }, 1000)
-        .call(() => {
+        .call(function () {
         objects["files"].addEventListener("click", onfilesClicked);
         container.addChild(objects["file1"]);
         container.addChild(objects["file2"]);
@@ -510,7 +510,7 @@ function drawSceneFive() {
     createjs.Tween.get(objects["o3"]).to({ alpha: 0.2 }, 1000);
     createjs.Tween.get(objects["o4"])
         .to({ alpha: 0.2 }, 1000)
-        .call(() => {
+        .call(function () {
         objects["o1"].addEventListener("click", ono1Clicked);
         objects["o2"].addEventListener("click", ono2Clicked);
         objects["o3"].addEventListener("click", ono3Clicked);
@@ -525,7 +525,7 @@ function drawSceneSix() {
         .to({ alpha: 1 }, 1000)
         .to({ alpha: 1 }, 7000)
         .to({ alpha: 0 }, 1000)
-        .call(() => {
+        .call(function () {
             container.removeChild(textSceneSix1);
             container.addChild(textSceneSix2);
             container.addChild(objects["family"]);
@@ -534,9 +534,9 @@ function drawSceneSix() {
             createjs.Tween.get(textSceneSix2)
                 .to({ alpha: 1 }, 1000)
                 .to({ alpha: 1 }, 7000)
-                .call(() => {
+                .call(function () {
                     createjs.Tween.get(objects["family"]).to({ alpha: 0 }, 1000);
-                    createjs.Tween.get(textSceneSix2).to({ alpha: 0 }, 1000).call(() => {
+                    createjs.Tween.get(textSceneSix2).to({ alpha: 0 }, 1000).call(function () {
                         container.removeChild(textSceneSix1);
                         container.removeChild(textSceneSix2);
                         container.removeChild(objects["family"]);
@@ -550,13 +550,13 @@ function drawSceneSeven() {
     container.addChild(objects["map"]);
     container.addChild(textSceneSeven1);
     textSceneSeven1.set({ alpha: 0 });
-    createjs.Tween.get(textSceneSeven1).to({ alpha: 1 }, 1000).call(() => {
-        createjs.Tween.get(textSceneSeven1).to({ alpha: 1 }, 7000).call(() => {
-            createjs.Tween.get(textSceneSeven1).to({ alpha: 0 }, 1000).call(() => {
+    createjs.Tween.get(textSceneSeven1).to({ alpha: 1 }, 1000).call(function () {
+        createjs.Tween.get(textSceneSeven1).to({ alpha: 1 }, 7000).call(function () {
+            createjs.Tween.get(textSceneSeven1).to({ alpha: 0 }, 1000).call(function () {
                 container.removeChild(textSceneSeven1);
-                createjs.Tween.get(objects["map"]).to({ alpha: 1 }, 1000).call(() => {
-                    createjs.Tween.get(objects["map"]).to({ alpha: 1 }, 7000).call(() => {
-                        createjs.Tween.get(objects["map"]).to({ alpha: 0 }, 1000).call(() => {
+                createjs.Tween.get(objects["map"]).to({ alpha: 1 }, 1000).call(function () {
+                    createjs.Tween.get(objects["map"]).to({ alpha: 1 }, 7000).call(function () {
+                        createjs.Tween.get(objects["map"]).to({ alpha: 0 }, 1000).call(function () {
                             ending();
                         })
                     })
@@ -574,13 +574,13 @@ function ending() {
 function onSceneoneClicked() {
     objects["Sceneone"].removeEventListener("click", onSceneoneClicked);
     playEffect("e3.mp3", 4000);
-    createjs.Tween.get(objects["Sceneone"]).to({ alpha: 0.3 }, 2000).call(() => {
+    createjs.Tween.get(objects["Sceneone"]).to({ alpha: 0.3 }, 2000).call(function () {
         container.addChild(textSceneone);
         textSceneone.set({ alpha: 0 });
-        createjs.Tween.get(textSceneone).to({ alpha: 1 }, 1000).call(() => {
-            createjs.Tween.get(textSceneone).to({ alpha: 1 }, 6000).call(() => {
+        createjs.Tween.get(textSceneone).to({ alpha: 1 }, 1000).call(function () {
+            createjs.Tween.get(textSceneone).to({ alpha: 1 }, 6000).call(function () {
                 createjs.Tween.get(objects["Sceneone"]).to({ alpha: 0 }, 1000);
-                createjs.Tween.get(textSceneone).to({ alpha: 0 }, 1000).call(() => {
+                createjs.Tween.get(textSceneone).to({ alpha: 0 }, 1000).call(function () {
                     container.removeChild(textSceneone);
                     container.removeChild(objects["SceneOne"]);
                     initSceneTwo();
@@ -592,16 +592,16 @@ function onSceneoneClicked() {
 
 function onRavenClicked() {
     clearInterval(ravenmove);
-    createjs.Tween.get(objects["raven"]).to({ guide: { path: [450, 300, 460, 500, 600, 700, 900, 750, 1200, 650] } }, 6000).call(() => {
+    createjs.Tween.get(objects["raven"]).to({ guide: { path: [450, 300, 460, 500, 600, 700, 900, 750, 1200, 650] } }, 6000).call(function () {
         createjs.Tween.get(objects["raven"]).to({ alpha: 0 }, 1000);
         createjs.Tween.get(objects["AsiaEuroMap"]).to({ alpha: 0 }, 1000);
         textSceneTwo.set({ alpha: 0 });
         container.addChild(textSceneTwo);
-        createjs.Tween.get(textSceneTwo).to({ alpha: 1 }, 1000).call(() => {
-            createjs.Tween.get(textSceneTwo).to({ alpha: 1 }, 7000).call(() => {
+        createjs.Tween.get(textSceneTwo).to({ alpha: 1 }, 1000).call(function () {
+            createjs.Tween.get(textSceneTwo).to({ alpha: 1 }, 7000).call(function () {
                 createjs.Tween.get(objects["raven"]).to({ alpha: 0 }, 1000);
                 createjs.Tween.get(objects["AsiaEuroMap"]).to({ alpha: 0 }, 1000);
-                createjs.Tween.get(textSceneTwo).to({ alpha: 0 }, 1000).call(() => {
+                createjs.Tween.get(textSceneTwo).to({ alpha: 0 }, 1000).call(function () {
                     container.removeChild(objects["raven"]);
                     container.removeChild(objects["AsiaEuroMap"]);
                     container.removeChild(textSceneTwo);
@@ -613,13 +613,13 @@ function onRavenClicked() {
 }
 
 function onFrontDoorClicked() {
-    createjs.Tween.get(objects["FrontDoor"]).to({ alpha: 0 }, 2000).call(() => {
+    createjs.Tween.get(objects["FrontDoor"]).to({ alpha: 0 }, 2000).call(function () {
         textSceneThree.set({ alpha: 0 });
         container.addChild(textSceneThree);
         createjs.Tween.get(textSceneThree)
             .to({ alpha: 1 }, 1000)
             .to({ alpha: 1 }, 7000)
-            .to({ alpha: 0 }, 1000).call(() => {
+            .to({ alpha: 0 }, 1000).call(function () {
                 container.removeChild(objects["FrontDoor"]);
                 container.removeChild(textSceneThree);
                 initSceneFour();
@@ -651,7 +651,7 @@ function onfilecloseClicked() {
 function onbuttonClicked() {
     onfilecloseClicked();
     controller.disableTask("scenefour");
-    createjs.Tween.get(objects["Scenefour"]).to({ alpha: 1 }, 500).call(() => {
+    createjs.Tween.get(objects["Scenefour"]).to({ alpha: 1 }, 500).call(function () {
         container.removeChild(objects["files"]);
         container.removeChild(objects["file1"]);
         container.removeChild(objects["file2"]);
@@ -661,13 +661,13 @@ function onbuttonClicked() {
 
         objects["files"] = new createjs.Bitmap(Queue.getResult("files_org")).set({ alpha: 1, x: 830, y: 480, scaleX: 0.1, scaleY: 0.1 });
         container.addChild(objects["files"]);
-        createjs.Tween.get(objects["Scenefour"]).to({ alpha: 0.5 }, 1000).call(() => {
+        createjs.Tween.get(objects["Scenefour"]).to({ alpha: 0.5 }, 1000).call(function () {
 
             textSceneFour1.set({ alpha: 0 });
             container.addChild(textSceneFour1);
-            createjs.Tween.get(textSceneFour1).to({ alpha: 1 }, 200).call(() => {
-                createjs.Tween.get(textSceneFour1).to({ alpha: 1 }, 7000).call(() => {
-                    createjs.Tween.get(textSceneFour1).to({ alpha: 0 }, 1000).call(() => {
+            createjs.Tween.get(textSceneFour1).to({ alpha: 1 }, 200).call(function () {
+                createjs.Tween.get(textSceneFour1).to({ alpha: 1 }, 7000).call(function () {
+                    createjs.Tween.get(textSceneFour1).to({ alpha: 0 }, 1000).call(function () {
                         container.removeChild(textSceneFour1);
                         controller.completeTask("files");
                         controller.enableTask("scenefour");
@@ -686,12 +686,12 @@ function onmarriageClicked() {
     controller.disableTask("scenefour");
     objects["marriage"].removeEventListener("click", onmarriageClicked);
     createjs.Tween.get(objects["files"]).to({ alpha: 0.5 }, 1000);
-    createjs.Tween.get(objects["Scenefour"]).to({ alpha: 0.5 }, 1000).call(() => {
-        objects["marriage"].addEventListener("click", () => {
+    createjs.Tween.get(objects["Scenefour"]).to({ alpha: 0.5 }, 1000).call(function () {
+        objects["marriage"].addEventListener("click", function () {
             createjs.Tween.get(objects["files"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["Scenefour"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["marriage"]).to({ alpha: 0.01, x: 1060, y: 90, scaleX: 0.1, scaleY: 0.1 }, 200);
-            createjs.Tween.get(textSceneFour2).to({ alpha: 0 }, 1000).call(() => {
+            createjs.Tween.get(textSceneFour2).to({ alpha: 0 }, 1000).call(function () {
                 container.removeChild(textSceneFour2);
                 objects["marriage"].addEventListener("click", onmarriageClicked);
                 controller.completeTask("marriage");
@@ -712,13 +712,13 @@ function onfactoryClicked() {
     controller.disableTask("scenefour");
     objects["factory"].removeEventListener("click", onfactoryClicked);
     createjs.Tween.get(objects["files"]).to({ alpha: 0.5 }, 1000);
-    createjs.Tween.get(objects["Scenefour"]).to({ alpha: 0.5 }, 1000).call(() => {
+    createjs.Tween.get(objects["Scenefour"]).to({ alpha: 0.5 }, 1000).call(function () {
         //playEffect("elecnoise.mp3", 3000);
-        objects["factory"].addEventListener("click", () => {
+        objects["factory"].addEventListener("click", function () {
             createjs.Tween.get(objects["files"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["Scenefour"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["factory"]).to({ x: 1300, y: 200, scaleX: 0.1, scaleY: 0.16, alpha: 0.01 }, 200);
-            createjs.Tween.get(textSceneFour3).to({ alpha: 0 }, 1000).call(() => {
+            createjs.Tween.get(textSceneFour3).to({ alpha: 0 }, 1000).call(function () {
                 container.removeChild(textSceneFour3);
                 objects["factory"].addEventListener("click", onfactoryClicked);
                 controller.completeTask("factory");
@@ -739,12 +739,12 @@ function onphotoClicked() {
     controller.disableTask("scenefour");
     objects["workmate"].removeEventListener("click", onphotoClicked);
     createjs.Tween.get(objects["files"]).to({ alpha: 0.5 }, 1000);
-    createjs.Tween.get(objects["Scenefour"]).to({ alpha: 0.5 }, 1000).call(() => {
-        objects["workmate"].addEventListener("click", () => {
+    createjs.Tween.get(objects["Scenefour"]).to({ alpha: 0.5 }, 1000).call(function () {
+        objects["workmate"].addEventListener("click", function () {
             createjs.Tween.get(objects["files"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["Scenefour"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["workmate"]).to({ x: 1300, y: 200, scaleX: 0.1, scaleY: 0.16, alpha: 0.01 }, 200);
-            createjs.Tween.get(textSceneFour4).to({ alpha: 0 }, 1000).call(() => {
+            createjs.Tween.get(textSceneFour4).to({ alpha: 0 }, 1000).call(function () {
                 container.removeChild(textSceneFour4);
                 objects["factory"].addEventListener("click", onfactoryClicked);
                 controller.completeTask("workmate");
@@ -766,17 +766,17 @@ function oncameraClicked() {
         && controller.checkStatus("workmate") == COMPLETED) {
         createjs.Tween.get(objects["camera"]).to({ alpha: 0 }, 1000);
         createjs.Tween.get(objects["files"]).to({ alpha: 0 }, 1000);
-        createjs.Tween.get(objects["Scenefour"]).to({ alpha: 0 }, 1000).call(() => {
+        createjs.Tween.get(objects["Scenefour"]).to({ alpha: 0 }, 1000).call(function () {
             clearScreen();
             container.addChild(textSceneFive1);
             container.addChild(textSceneFive2)
             textSceneFive1.set({ alpha: 0 });
             textSceneFive2.set({ alpha: 0 });
             createjs.Tween.get(textSceneFive2).to({ alpha: 1 }, 1000);
-            createjs.Tween.get(textSceneFive1).to({ alpha: 1 }, 1000).call(() => {
-                createjs.Tween.get(textSceneFive1).to({ alpha: 1 }, 7000).call(() => {
+            createjs.Tween.get(textSceneFive1).to({ alpha: 1 }, 1000).call(function () {
+                createjs.Tween.get(textSceneFive1).to({ alpha: 1 }, 7000).call(function () {
                     createjs.Tween.get(textSceneFive1).to({ alpha: 0 }, 1000);
-                    createjs.Tween.get(textSceneFive2).to({ alpha: 0 }, 1000).call(() => {
+                    createjs.Tween.get(textSceneFive2).to({ alpha: 0 }, 1000).call(function () {
                         container.removeChild(textSceneFive1);
                         container.removeChild(textSceneFive2);
                         initSceneFive();
@@ -801,7 +801,7 @@ function ono1Clicked() {
     photo1text.set({ alpha: 0 });
     createjs.Tween.get(photo1text).to({ alpha: 1 }, 2000);
     objects["o1"].removeEventListener("click", ono1Clicked);
-    createjs.Tween.get(objects["o1"]).to({ alpha: 1 }, 2000).call(() => {
+    createjs.Tween.get(objects["o1"]).to({ alpha: 1 }, 2000).call(function () {
         controller.completeTask("o1");
         if (controller.checkStatus("o1") == COMPLETED
             && controller.checkStatus("o2") == COMPLETED
@@ -817,7 +817,7 @@ function ono2Clicked() {
     photo2text.set({ alpha: 0 });
     createjs.Tween.get(photo2text).to({ alpha: 1 }, 2000);
     objects["o2"].removeEventListener("click", ono2Clicked);
-    createjs.Tween.get(objects["o2"]).to({ alpha: 1 }, 2000).call(() => {
+    createjs.Tween.get(objects["o2"]).to({ alpha: 1 }, 2000).call(function () {
         controller.completeTask("o2");
         if (controller.checkStatus("o1") == COMPLETED
             && controller.checkStatus("o2") == COMPLETED
@@ -833,7 +833,7 @@ function ono3Clicked() {
     photo3text.set({ alpha: 0 });
     createjs.Tween.get(photo3text).to({ alpha: 1 }, 2000);
     objects["o3"].removeEventListener("click", ono3Clicked);
-    createjs.Tween.get(objects["o3"]).to({ alpha: 1 }, 2000).call(() => {
+    createjs.Tween.get(objects["o3"]).to({ alpha: 1 }, 2000).call(function () {
         controller.completeTask("o3");
         if (controller.checkStatus("o1") == COMPLETED
             && controller.checkStatus("o2") == COMPLETED
@@ -849,7 +849,7 @@ function ono4Clicked() {
     photo4text.set({ alpha: 0 });
     createjs.Tween.get(photo4text).to({ alpha: 1 }, 2000);
     objects["o4"].removeEventListener("click", ono4Clicked);
-    createjs.Tween.get(objects["o4"]).to({ alpha: 1 }, 2000).call(() => {
+    createjs.Tween.get(objects["o4"]).to({ alpha: 1 }, 2000).call(function () {
         controller.completeTask("o4");
         if (controller.checkStatus("o1") == COMPLETED
             && controller.checkStatus("o2") == COMPLETED
@@ -869,7 +869,7 @@ function scene5end() {
     createjs.Tween.get(objects["o2"]).to({ alpha: 0 }, 1000);
     createjs.Tween.get(objects["o3"]).to({ alpha: 0 }, 1000);
     createjs.Tween.get(objects["o4"]).to({ alpha: 0 }, 1000)
-        .call(() => {
+        .call(function () {
             container.removeChild(objects["o1"]);
             container.removeChild(objects["o2"]);
             container.removeChild(objects["o3"]);
@@ -884,7 +884,7 @@ function scene5end() {
             createjs.Tween.get(textSceneFive3)
                 .to({ alpha: 1 }, 1000)
                 .to({ alpha: 1 }, 7000)
-                .to({ alpha: 0 }, 1000).call(() => {
+                .to({ alpha: 0 }, 1000).call(function () {
                     initSceneSix();
                 });
         });

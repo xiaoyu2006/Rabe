@@ -27,7 +27,7 @@ function init_adjustScreen() {
     const H = 1080;
     canvas.width = W;
     canvas.height = H;
-    const autoresize = () => {
+    const autoresize = function () {
         if (window.innerWidth / window.innerHeight < W / H) {
             canvas.style.width = "100%";
             canvas.style.height = "auto";

@@ -70,40 +70,40 @@ function HandleComplete() {
     loading.set({ alpha: 0 });
     container.addChild(begintext);
     begintext.set({ alpha: 0 });
-    createjs.Tween.get(begintext).to({ alpha: 1 }, 1000).call(() => {
-        createjs.Tween.get(begintext).to({ alpha: 1 }, 7000).call(() => {
-            createjs.Tween.get(begintext).to({ alpha: 0 }, 1000).call(() => {
+    createjs.Tween.get(begintext).to({ alpha: 1 }, 1000).call(function () {
+        createjs.Tween.get(begintext).to({ alpha: 1 }, 7000).call(function () {
+            createjs.Tween.get(begintext).to({ alpha: 0 }, 1000).call(function () {
                 bg = container.addChild(new createjs.Bitmap(Queue.getResult("box")));
                 things.push(new createjs.Bitmap(Queue.getResult("box_open")));
                 things.push(new createjs.Bitmap(Queue.getResult("mession")).set({ x: 270, y: -70, scaleX: 0.5, scaleY: 0.5 }));
                 things.push(new createjs.Bitmap(Queue.getResult("pointer")).set({ x: 900, y: 420, scaleX: 0.4, scaleY: 0.4 }));
                 things.push(new createjs.Bitmap(Queue.getResult("outdoor")));
 
-                bg.addEventListener("click", () => {
+                bg.addEventListener("click", function () {
                     bg.removeEventListener("click", arguments.callee);
-                    createjs.Tween.get(container).to({ alpha: 0 }, 1000).call(() => {
+                    createjs.Tween.get(container).to({ alpha: 0 }, 1000).call(function () {
                         var element = document.getElementById("main");
                         container.removeChild(bg);
                         container.addChild(things[0]);
                     }).to({ alpha: 1 }, 1000);
                 });
-                things[0].addEventListener("click", () => {
+                things[0].addEventListener("click", function () {
                     things[0].removeEventListener("click", arguments.callee);
                     container.addChild(things[1]);
                     container.addChild(things[2]);
                 });
-                things[2].addEventListener("click", () => {
+                things[2].addEventListener("click", function () {
                     things[2].removeEventListener("click", arguments.callee);
-                    createjs.Tween.get(container).to({ alpha: 0 }, 1000).call(() => {
+                    createjs.Tween.get(container).to({ alpha: 0 }, 1000).call(function () {
                         container.removeChild(things[0]);
                         container.removeChild(things[1]);
                         container.removeChild(things[2]);
                         container.addChild(things[3]);
                     }).to({ alpha: 1 }, 1000);
                 })
-                things[3].addEventListener("click", () => {
+                things[3].addEventListener("click", function () {
                     things[3].removeEventListener("click", arguments.callee);
-                    createjs.Tween.get(container).to({ alpha: 0 }, 1000).call(() => {
+                    createjs.Tween.get(container).to({ alpha: 0 }, 1000).call(function () {
                         state = 1;
                         container.removeChild(things[3]);
                         things.length = 0;
@@ -165,7 +165,7 @@ queue.loadManifest([
     { id: "bomb_sound", src: "sound/bomb.mp3" }
 ]);
 function handleComplete() {
-    container.addEventListener("tick", () => {
+    container.addEventListener("tick", function () {
         if (state == 1) {
             container.removeEventListener("tick", arguments.callee);
             container.addChild(new createjs.Bitmap(queue.getResult("indoor")));
@@ -303,20 +303,20 @@ function state1_end() {
 function state3_end() {
     state = 4;
     container.addChild(bg);
-    createjs.Tween.get(container).to({ alpha: 0 }, 1000).to({ alpha: 1 }, 1000).call(() => {
+    createjs.Tween.get(container).to({ alpha: 0 }, 1000).to({ alpha: 1 }, 1000).call(function () {
         shelter_handler();
         container.addChild(things[10]);
         createjs.Tween.get(things[10]).to({ x: 304, y: 0, scaleX: 0.9, scaleY: 0.9 }, 300);
-        things[10].addEventListener("click", () => {
+        things[10].addEventListener("click", function () {
             var block = new createjs.Shape(); objects["block"] = block; block.set({ alpha: 0 });
             block.graphics.beginFill("black").drawRect(0, 0, canvasX, canvasY);
             container.addChild(block);
-            createjs.Tween.get(block).to({ alpha: 1 }, 1000).call(() => {
+            createjs.Tween.get(block).to({ alpha: 1 }, 1000).call(function () {
                 container.addChild(endingtext);
                 endingtext.set({ alpha: 0 });
-                createjs.Tween.get(endingtext).to({ alpha: 1 }, 1000).call(() => {
-                    createjs.Tween.get(endingtext).to({ alpha: 1 }, 7000).call(() => {
-                        createjs.Tween.get(endingtext).to({ alpha: 0 }, 1000).call(() => {
+                createjs.Tween.get(endingtext).to({ alpha: 1 }, 1000).call(function () {
+                    createjs.Tween.get(endingtext).to({ alpha: 1 }, 7000).call(function () {
+                        createjs.Tween.get(endingtext).to({ alpha: 0 }, 1000).call(function () {
                             ending();
                         })
                     })
@@ -426,7 +426,7 @@ function letter_handler() {
 
 function letterx_handler() {
     createjs.Tween.get(things[3]).to({ x: 50, y: 50, scaleX: 0.3, scaleY: 0.3 }, 300);
-    createjs.Tween.get(things[4]).to({ x: 50, y: 50, scaleX: 0.3, scaleY: 0.3 }, 300).call(() => {
+    createjs.Tween.get(things[4]).to({ x: 50, y: 50, scaleX: 0.3, scaleY: 0.3 }, 300).call(function () {
         container.removeChild(things[3]);
         container.removeChild(things[4]);
         container.removeChild(bg);
@@ -501,7 +501,7 @@ function gameover() {
     if (things[5].x == 630)
         state3_end();
     else {
-        createjs.Tween.get(container).to({ alpha: 0.95 }, 500).call(() => { })
-            .to({ alpha: 0.01 }, 5500).call(() => { window.location.reload(); });
+        createjs.Tween.get(container).to({ alpha: 0.95 }, 500).call(function () { })
+            .to({ alpha: 0.01 }, 5500).call(function () { window.location.reload(); });
     }
 }

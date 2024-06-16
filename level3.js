@@ -305,10 +305,10 @@ function handleCompleteSceneOne() {
 
     container.addChild(begintext);
     begintext.set({ alpha: 0 });
-    createjs.Tween.get(begintext).to({ alpha: 0 }, 1000).call(() => {
-        createjs.Tween.get(begintext).to({ alpha: 1 }, 1000).call(() => {
-            createjs.Tween.get(begintext).to({ alpha: 1 }, 7000).call(() => {
-                createjs.Tween.get(begintext).to({ alpha: 0 }, 1000).call(() => {
+    createjs.Tween.get(begintext).to({ alpha: 0 }, 1000).call(function () {
+        createjs.Tween.get(begintext).to({ alpha: 1 }, 1000).call(function () {
+            createjs.Tween.get(begintext).to({ alpha: 1 }, 7000).call(function () {
+                createjs.Tween.get(begintext).to({ alpha: 0 }, 1000).call(function () {
                     drawSceneOne();
                 })
             })
@@ -636,10 +636,10 @@ function oncarClicked() {
         container.addChild(endingtext);
         block.set({ alpha: 0 });
         endingtext.set({ alpha: 0 });
-        createjs.Tween.get(block).to({ alpha: 1 }, 1000).call(() => {
-            createjs.Tween.get(endingtext).to({ alpha: 1 }, 1000).call(() => {
-                createjs.Tween.get(endingtext).to({ alpha: 1 }, 7000).call(() => {
-                    createjs.Tween.get(endingtext).to({ alpha: 0 }, 1000).call(() => {
+        createjs.Tween.get(block).to({ alpha: 1 }, 1000).call(function () {
+            createjs.Tween.get(endingtext).to({ alpha: 1 }, 1000).call(function () {
+                createjs.Tween.get(endingtext).to({ alpha: 1 }, 7000).call(function () {
+                    createjs.Tween.get(endingtext).to({ alpha: 0 }, 1000).call(function () {
                         ending();
                     });
                 });

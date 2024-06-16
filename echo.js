@@ -301,17 +301,17 @@ function drawSceneOne() {
 
     container.addChild(begintext);
     begintext.set({ alpha: 0 });
-    createjs.Tween.get(begintext).to({ alpha: 1 }, 1000).call(() => {
-        createjs.Tween.get(begintext).to({ alpha: 1 }, 7000).call(() => {
-            createjs.Tween.get(begintext).to({ alpha: 0 }, 1000).call(() => {
+    createjs.Tween.get(begintext).to({ alpha: 1 }, 1000).call(function () {
+        createjs.Tween.get(begintext).to({ alpha: 1 }, 7000).call(function () {
+            createjs.Tween.get(begintext).to({ alpha: 0 }, 1000).call(function () {
                 container.addChild(objects["dock"]);
                 container.addChild(objects["rabe"]);
 
-                createjs.Tween.get(objects["dock"]).to({ alpha: 1 }, 2000).call(() => {
-                    createjs.Tween.get(objects["rabe"]).to({ alpha: 1 }, 2000).call(() => {
-                        objects["dock"].addEventListener("click", () => {
+                createjs.Tween.get(objects["dock"]).to({ alpha: 1 }, 2000).call(function () {
+                    createjs.Tween.get(objects["rabe"]).to({ alpha: 1 }, 2000).call(function () {
+                        objects["dock"].addEventListener("click", function () {
                             createjs.Tween.get(objects["rabe"]).to({ alpha: 0 }, 1000);
-                            createjs.Tween.get(objects["dock"]).to({ alpha: 0 }, 1000).call(() => {
+                            createjs.Tween.get(objects["dock"]).to({ alpha: 0 }, 1000).call(function () {
                                 container.removeChild(objects["dock"]);
                                 initSceneTwo();
                             })
@@ -335,9 +335,9 @@ function drawSceneTwo() {
 
     container.addChild(museumtext);
     museumtext.set({ alpha: 0 });
-    createjs.Tween.get(museumtext).to({ alpha: 1 }, 1000).call(() => {
-        createjs.Tween.get(museumtext).to({ alpha: 1 }, 7000).call(() => {
-            createjs.Tween.get(museumtext).to({ alpha: 0 }, 1000).call(() => {
+    createjs.Tween.get(museumtext).to({ alpha: 1 }, 1000).call(function () {
+        createjs.Tween.get(museumtext).to({ alpha: 1 }, 7000).call(function () {
+            createjs.Tween.get(museumtext).to({ alpha: 0 }, 1000).call(function () {
 
                 container.addChild(objects["s2_1"]);
                 container.addChild(objects["s2_2"]);
@@ -355,7 +355,7 @@ function drawSceneTwo() {
                 container.addChild(objects["photo7"]);
 
                 createjs.Tween.get(objects["arrowhead2"]).to({ alpha: 1 }, 1000);
-                createjs.Tween.get(objects["s2_2"]).to({ alpha: 1 }, 1000).call(() => {
+                createjs.Tween.get(objects["s2_2"]).to({ alpha: 1 }, 1000).call(function () {
                     objects["arrowhead1"].addEventListener("click", onarrow1Scene2Clicked);
                 })
 
@@ -378,7 +378,7 @@ function onarrow1Scene2Clicked() {
     objects["photo7"].set({ alpha: 0.01 });
 
     createjs.Tween.get(objects["arrowhead1"]).to({ alpha: 0 }, 1000);
-    createjs.Tween.get(objects["s2_1"]).to({ alpha: 0 }, 1000).call(() => {
+    createjs.Tween.get(objects["s2_1"]).to({ alpha: 0 }, 1000).call(function () {
         createjs.Tween.get(objects["s2_2"]).to({ alpha: 1 }, 1000);
         createjs.Tween.get(objects["arrowhead2"]).to({ alpha: 1 }, 1000);
     })
@@ -394,7 +394,7 @@ function onarrow2Scene2Clicked() {
     objects["photo7"].set({ alpha: 0 });
 
     createjs.Tween.get(objects["arrowhead2"]).to({ alpha: 0 }, 1000);
-    createjs.Tween.get(objects["s2_2"]).to({ alpha: 0 }, 1000).call(() => {
+    createjs.Tween.get(objects["s2_2"]).to({ alpha: 0 }, 1000).call(function () {
         createjs.Tween.get(objects["s2_1"]).to({ alpha: 1 }, 1000);
         createjs.Tween.get(objects["arrowhead1"]).to({ alpha: 1 }, 1000);
     })
@@ -402,8 +402,8 @@ function onarrow2Scene2Clicked() {
 
 function onphoto1Clicked() {
     if (objects["photo1"].scaleX > 0.5) {
-        createjs.Tween.get(objects["photo1"]).to({ alpha: 0 }, 1000).call(() => {
-            createjs.Tween.get(objects["s2_1"]).to({ alpha: 1 }, 1000).call(() => {
+        createjs.Tween.get(objects["photo1"]).to({ alpha: 0 }, 1000).call(function () {
+            createjs.Tween.get(objects["s2_1"]).to({ alpha: 1 }, 1000).call(function () {
                 showPhono1();
                 objects["photo1"].set({ alpha: 0.01, x: 50, y: 350, scaleX: 0.2, scaleY: 0.2 });
                 objects["photo2"].set({ alpha: 0.01 });
@@ -425,7 +425,7 @@ function onphoto1Clicked() {
     objects["photo4"].set({ alpha: 0 });
 
     createjs.Tween.get(objects["arrowhead1"]).to({ alpha: 0 }, 1000);
-    createjs.Tween.get(objects["s2_1"]).to({ alpha: 0 }, 1000).call(() => {
+    createjs.Tween.get(objects["s2_1"]).to({ alpha: 0 }, 1000).call(function () {
         showPhono1();
         audioName = "4.mp3";
         createjs.Tween.get(objects["photo1"]).to({ alpha: 1 }, 1000);
@@ -434,8 +434,8 @@ function onphoto1Clicked() {
 
 function onphoto2Clicked() {
     if (objects["photo2"].scaleX > 0.5) {
-        createjs.Tween.get(objects["photo2"]).to({ alpha: 0 }, 1000).call(() => {
-            createjs.Tween.get(objects["s2_1"]).to({ alpha: 1 }, 1000).call(() => {
+        createjs.Tween.get(objects["photo2"]).to({ alpha: 0 }, 1000).call(function () {
+            createjs.Tween.get(objects["s2_1"]).to({ alpha: 1 }, 1000).call(function () {
                 showPhono1();
                 objects["photo2"].set({ alpha: 0.01, x: 500, y: 270, scaleX: 0.2, scaleY: 0.3 });
                 objects["photo1"].set({ alpha: 0.01 });
@@ -457,7 +457,7 @@ function onphoto2Clicked() {
     objects["photo4"].set({ alpha: 0 });
 
     createjs.Tween.get(objects["arrowhead1"]).to({ alpha: 0 }, 1000);
-    createjs.Tween.get(objects["s2_1"]).to({ alpha: 0 }, 1000).call(() => {
+    createjs.Tween.get(objects["s2_1"]).to({ alpha: 0 }, 1000).call(function () {
         showPhono1();
         audioName = "5.mp3";
         createjs.Tween.get(objects["photo2"]).to({ alpha: 1 }, 1000);
@@ -466,8 +466,8 @@ function onphoto2Clicked() {
 
 function onphoto3Clicked() {
     if (objects["photo3"].scaleX > 0.5) {
-        createjs.Tween.get(objects["photo3"]).to({ alpha: 0 }, 1000).call(() => {
-            createjs.Tween.get(objects["s2_1"]).to({ alpha: 1 }, 1000).call(() => {
+        createjs.Tween.get(objects["photo3"]).to({ alpha: 0 }, 1000).call(function () {
+            createjs.Tween.get(objects["s2_1"]).to({ alpha: 1 }, 1000).call(function () {
                 showPhono1();
                 objects["photo3"].set({ alpha: 0.01, x: 1000, y: 350, scaleX: 0.2, scaleY: 0.2 });
                 objects["photo2"].set({ alpha: 0.01 });
@@ -491,7 +491,7 @@ function onphoto3Clicked() {
     objects["photo4"].set({ alpha: 0 });
 
     createjs.Tween.get(objects["arrowhead1"]).to({ alpha: 0 }, 1000);
-    createjs.Tween.get(objects["s2_1"]).to({ alpha: 0 }, 1000).call(() => {
+    createjs.Tween.get(objects["s2_1"]).to({ alpha: 0 }, 1000).call(function () {
         showPhono1();
         audioName = "6.mp3";
         createjs.Tween.get(objects["photo3"]).to({ alpha: 1 }, 1000);
@@ -500,9 +500,9 @@ function onphoto3Clicked() {
 
 function onphoto4Clicked() {
     if (objects["photo4"].scaleX > 0.5) {
-        createjs.Tween.get(objects["photo4"]).to({ alpha: 0 }, 1000).call(() => {
+        createjs.Tween.get(objects["photo4"]).to({ alpha: 0 }, 1000).call(function () {
 
-            createjs.Tween.get(objects["s2_1"]).to({ alpha: 1 }, 1000).call(() => {
+            createjs.Tween.get(objects["s2_1"]).to({ alpha: 1 }, 1000).call(function () {
                 showPhono1();
                 objects["photo4"].set({ alpha: 0.01, x: 1500, y: 350, scaleX: 0.2, scaleY: 0.3 });
                 objects["photo2"].set({ alpha: 0.01 });
@@ -526,7 +526,7 @@ function onphoto4Clicked() {
     objects["photo4"].set({ alpha: 0, x: 0, y: 0, scaleX: 1, scaleY: 1 });
 
     createjs.Tween.get(objects["arrowhead1"]).to({ alpha: 0 }, 1000);
-    createjs.Tween.get(objects["s2_1"]).to({ alpha: 0 }, 1000).call(() => {
+    createjs.Tween.get(objects["s2_1"]).to({ alpha: 0 }, 1000).call(function () {
         showPhono1();
         audioName = "7.mp3";
         createjs.Tween.get(objects["photo4"]).to({ alpha: 1 }, 1000);
@@ -536,9 +536,9 @@ function onphoto4Clicked() {
 
 function onphoto5Clicked() {
     if (objects["photo5"].scaleX > 0.5) {
-        createjs.Tween.get(objects["photo5"]).to({ alpha: 0 }, 1000).call(() => {
+        createjs.Tween.get(objects["photo5"]).to({ alpha: 0 }, 1000).call(function () {
             createjs.Tween.get(objects["s2_2"]).to({ alpha: 1 }, 1000);
-            createjs.Tween.get(objects["arrowhead2"]).to({ alpha: 1 }, 1000).call(() => {
+            createjs.Tween.get(objects["arrowhead2"]).to({ alpha: 1 }, 1000).call(function () {
                 showPhono2();
                 objects["photo5"].set({ alpha: 0.01, x: 300, y: 300, scaleX: 0.2, scaleY: 0.4 });
                 objects["photo6"].set({ alpha: 0.01 });
@@ -558,7 +558,7 @@ function onphoto5Clicked() {
     objects["photo5"].set({ alpha: 0, x: 0, y: 0, scaleX: 1, scaleY: 1 });
 
     createjs.Tween.get(objects["arrowhead2"]).to({ alpha: 0 }, 1000);
-    createjs.Tween.get(objects["s2_2"]).to({ alpha: 0 }, 1000).call(() => {
+    createjs.Tween.get(objects["s2_2"]).to({ alpha: 0 }, 1000).call(function () {
         showPhono2();
         audioName = "1.mp3";
         createjs.Tween.get(objects["photo5"]).to({ alpha: 1 }, 1000);
@@ -567,8 +567,8 @@ function onphoto5Clicked() {
 
 function onphoto6Clicked() {
     if (objects["photo6"].scaleX > 0.5) {
-        createjs.Tween.get(objects["photo6"]).to({ alpha: 0 }, 1000).call(() => {
-            createjs.Tween.get(objects["s2_2"]).to({ alpha: 1 }, 1000).call(() => {
+        createjs.Tween.get(objects["photo6"]).to({ alpha: 0 }, 1000).call(function () {
+            createjs.Tween.get(objects["s2_2"]).to({ alpha: 1 }, 1000).call(function () {
                 showPhono2();
                 objects["photo6"].set({ alpha: 0.01, x: 900, y: 250, scaleX: 0.2, scaleY: 0.4 });
                 objects["photo5"].set({ alpha: 0.01 });
@@ -588,7 +588,7 @@ function onphoto6Clicked() {
     objects["photo6"].set({ alpha: 0, x: 0, y: 0, scaleX: 1, scaleY: 1 });
 
     createjs.Tween.get(objects["arrowhead2"]).to({ alpha: 0 }, 1000);
-    createjs.Tween.get(objects["s2_2"]).to({ alpha: 0 }, 1000).call(() => {
+    createjs.Tween.get(objects["s2_2"]).to({ alpha: 0 }, 1000).call(function () {
         showPhono2();
         audioName = "2.mp3";
         createjs.Tween.get(objects["photo6"]).to({ alpha: 1 }, 1000);
@@ -597,8 +597,8 @@ function onphoto6Clicked() {
 
 function onphoto7Clicked() {
     if (objects["photo7"].scaleX > 0.5) {
-        createjs.Tween.get(objects["photo7"]).to({ alpha: 0 }, 1000).call(() => {
-            createjs.Tween.get(objects["s2_2"]).to({ alpha: 1 }, 1000).call(() => {
+        createjs.Tween.get(objects["photo7"]).to({ alpha: 0 }, 1000).call(function () {
+            createjs.Tween.get(objects["s2_2"]).to({ alpha: 1 }, 1000).call(function () {
                 showPhono2();
                 objects["photo7"].set({ alpha: 0.01, x: 1400, y: 200, scaleX: 0.2, scaleY: 0.4 });
                 objects["photo5"].set({ alpha: 0.01 });
@@ -619,7 +619,7 @@ function onphoto7Clicked() {
     objects["photo7"].set({ alpha: 0, x: 0, y: 0, scaleX: 1, scaleY: 1 });
 
     createjs.Tween.get(objects["arrowhead2"]).to({ alpha: 0 }, 1000);
-    createjs.Tween.get(objects["s2_2"]).to({ alpha: 0 }, 1000).call(() => {
+    createjs.Tween.get(objects["s2_2"]).to({ alpha: 0 }, 1000).call(function () {
         showPhono2();
         audioName = "3.mp3";
         createjs.Tween.get(objects["photo7"]).to({ alpha: 1 }, 1000);
@@ -688,12 +688,12 @@ function showEndingScene() {
     createjs.Tween.get(objects["arrowhead2"]).to({ alpha: 0 }, 2000);
     createjs.Tween.get(objects["arrowhead1"]).to({ alpha: 0 }, 2000);
     createjs.Tween.get(objects["s2_2"]).to({ alpha: 0 }, 2000)
-    createjs.Tween.get(objects["s2_1"]).to({ alpha: 0 }, 2000).call(() => {
+    createjs.Tween.get(objects["s2_1"]).to({ alpha: 0 }, 2000).call(function () {
         container.addChild(endingtext);
         endingtext.set({ alpha: 0 });
-        createjs.Tween.get(endingtext).to({ alpha: 1 }, 1000).call(() => {
-            createjs.Tween.get(endingtext).to({ alpha: 1 }, 7000).call(() => {
-                createjs.Tween.get(endingtext).to({ alpha: 0 }, 1000).call(() => {
+        createjs.Tween.get(endingtext).to({ alpha: 1 }, 1000).call(function () {
+            createjs.Tween.get(endingtext).to({ alpha: 1 }, 7000).call(function () {
+                createjs.Tween.get(endingtext).to({ alpha: 0 }, 1000).call(function () {
                     ending();
                 });
             });
