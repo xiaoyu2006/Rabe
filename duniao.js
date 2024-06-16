@@ -313,9 +313,9 @@ function intitSceneSeven() {
 function handleCompleteSceneOne() {
     loading.set({ alpha: 0 });
 
-    playEffect("e1.wav", 0);
-    // playEffect("e2.wav", 0);
-    // playEffect("e3.wav", 0);
+    playEffect("e1.mp3", 0);
+    // playEffect("e2.mp3", 0);
+    // playEffect("e3.mp3", 0);
 
     progressnum = 0;
 
@@ -573,7 +573,7 @@ function ending() {
 
 function onSceneoneClicked() {
     objects["Sceneone"].removeEventListener("click", onSceneoneClicked);
-    playEffect("e3.wav", 4000);
+    playEffect("e3.mp3", 4000);
     createjs.Tween.get(objects["Sceneone"]).to({ alpha: 0.3 }, 2000).call(() => {
         container.addChild(textSceneone);
         textSceneone.set({ alpha: 0 });
@@ -713,7 +713,7 @@ function onfactoryClicked() {
     objects["factory"].removeEventListener("click", onfactoryClicked);
     createjs.Tween.get(objects["files"]).to({ alpha: 0.5 }, 1000);
     createjs.Tween.get(objects["Scenefour"]).to({ alpha: 0.5 }, 1000).call(() => {
-        //playEffect("elecnoise.wav", 3000);
+        //playEffect("elecnoise.mp3", 3000);
         objects["factory"].addEventListener("click", () => {
             createjs.Tween.get(objects["files"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["Scenefour"]).to({ alpha: 1 }, 1000);
@@ -759,7 +759,7 @@ function onphotoClicked() {
 }
 
 function oncameraClicked() {
-    playEffect("shuttle.wav");
+    playEffect("shuttle.mp3");
     if (controller.checkStatus("marriage") == COMPLETED
         && controller.checkStatus("factory") == COMPLETED
         && controller.checkStatus("files") == COMPLETED

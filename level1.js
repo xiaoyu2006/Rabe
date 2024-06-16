@@ -56,9 +56,9 @@ Queue.on("complete", HandleComplete, this);
 Queue.on("progress", handleProgress, this);
 Queue.loadManifest([
     { id: "bgm", src: "sound/bgm.m4a" },
-    { id: "box_sound", src: "sound/box.wav" },
-    { id: "book_sound", src: "sound/book.wav" },
-    { id: "door_sound", src: "sound/door.wav" },
+    { id: "box_sound", src: "sound/box.mp3" },
+    { id: "book_sound", src: "sound/book.mp3" },
+    { id: "door_sound", src: "sound/door.mp3" },
     { id: "box", src: "img/box.png" },
     { id: "outdoor", src: "img/outdoor.jpg" },
     { id: "box_open", src: "img/box_open.png" },
@@ -160,9 +160,9 @@ queue.loadManifest([
     { id: "telescope", src: "img/tele.png" },
     { id: "ticket1", src: "img/ticket1.png" },
     { id: "ticket2", src: "img/ticket2.png" },
-    { id: "bag_sound", src: "sound/bag.wav" },
-    { id: "air_sound", src: "sound/air.wav" },
-    { id: "bomb_sound", src: "sound/bomb.wav" }
+    { id: "bag_sound", src: "sound/bag.mp3" },
+    { id: "air_sound", src: "sound/air.mp3" },
+    { id: "bomb_sound", src: "sound/bomb.mp3" }
 ]);
 function handleComplete() {
     container.addEventListener("tick", () => {
@@ -224,7 +224,7 @@ function draw_rects() {
 }; draw_rects();
 
 function aircraft_handler() {
-    playEffect("e5.wav", 0);
+    playEffect("e5.mp3", 0);
     container.removeChild(things[12]);
     container.addChild(things[13]);
 }
