@@ -1,6 +1,8 @@
 - [ ] level2缺少引导
-- [ ] 动画重复加载 
+- [ ] 动画重复加载
 - [ ] 音频不正常切断
 - [ ] Refactor
-- [ ] 资源Minimize
+- [x] 资源Minimize
 - [x] 移除isMobile
+- [ ] duniao 上海-南京 地图名字
+- [ ] 章节结束自动下一章
