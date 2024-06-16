@@ -214,7 +214,7 @@ function init() {
     loading = new createjs.Text("正在打开日记...  " + progressnum, "150px kaiti", "#fff").set({ x: 190, y: 470 });
     var text = container.addChild(loading);
     stage.update();
-    createjs.Ticker.setFPS(60);
+    createjs.Ticker.interval = 1000/60;
     createjs.Ticker.addEventListener("tick", stage);
     createjs.Ticker.addEventListener("tick", handleTick);
     initSceneOne();
@@ -305,10 +305,10 @@ function handleCompleteSceneOne() {
 
     container.addChild(begintext);
     begintext.set({ alpha: 0 });
-    createjs.Tween.get(begintext).to({ alpha: 0 }, 1000).call(function () {
-        createjs.Tween.get(begintext).to({ alpha: 1 }, 1000).call(function () {
-            createjs.Tween.get(begintext).to({ alpha: 1 }, 7000).call(function () {
-                createjs.Tween.get(begintext).to({ alpha: 0 }, 1000).call(function () {
+    createjs.Tween.get(begintext).to({ alpha: 0 }, 1000).call(() => {
+        createjs.Tween.get(begintext).to({ alpha: 1 }, 1000).call(() => {
+            createjs.Tween.get(begintext).to({ alpha: 1 }, 7000).call(() => {
+                createjs.Tween.get(begintext).to({ alpha: 0 }, 1000).call(() => {
                     drawSceneOne();
                 })
             })
@@ -636,10 +636,10 @@ function oncarClicked() {
         container.addChild(endingtext);
         block.set({ alpha: 0 });
         endingtext.set({ alpha: 0 });
-        createjs.Tween.get(block).to({ alpha: 1 }, 1000).call(function () {
-            createjs.Tween.get(endingtext).to({ alpha: 1 }, 1000).call(function () {
-                createjs.Tween.get(endingtext).to({ alpha: 1 }, 7000).call(function () {
-                    createjs.Tween.get(endingtext).to({ alpha: 0 }, 1000).call(function () {
+        createjs.Tween.get(block).to({ alpha: 1 }, 1000).call(() => {
+            createjs.Tween.get(endingtext).to({ alpha: 1 }, 1000).call(() => {
+                createjs.Tween.get(endingtext).to({ alpha: 1 }, 7000).call(() => {
+                    createjs.Tween.get(endingtext).to({ alpha: 0 }, 1000).call(() => {
                         ending();
                     });
                 });

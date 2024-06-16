@@ -14,7 +14,7 @@ function init() {
     stage.enableMouseOver();
     createjs.Touch.enable(stage);
     stage.update();
-    createjs.Ticker.setFPS(60);
+    createjs.Ticker.interval = 1000/60;
     createjs.Ticker.addEventListener("tick", stage);
     init_adjustScreen();
     init_initSceneOne();

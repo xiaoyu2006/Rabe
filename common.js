@@ -29,7 +29,7 @@ function showHint(hint, time) {
     container.addChild(texthint);
     createjs.Tween.get(texthint)
         .to({ alpha: 0 }, time, createjs.Ease.getPowInOut(5))
-        .call(function () {
+        .call(() => {
             texthint.text = " ";
             texthint.set({ alpha: 1 });
         });
@@ -103,7 +103,7 @@ const loadecho = defLoadlevel("echo.js", "sound/m7.mp3");
 
 function onOnce(target, type, f) {
     target.addEventListener(type, function g(event) {
-        f.call(target, event);
         target.removeEventListener(type, g);
+        f.call(target, event);
     });
 };
