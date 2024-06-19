@@ -405,8 +405,7 @@ function onScenefourClick() {
         }
         else if (controller.checkStatus("marriage") != COMPLETED || controller.checkStatus("factory") != COMPLETED || controller.checkStatus("workmate") != COMPLETED) {
             showHint("看看墙上的相片？", 2000);
-        }
-        else {
+        } else {
             showHint("去拍照吧", 2000);
             objects["Scenefour"].removeEventListener("click", onScenefourClick);
         }
