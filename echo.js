@@ -697,6 +697,7 @@ function showEndingScene() {
             .to({ alpha: 1 }, 1000)
             .to({ alpha: 1 }, 7000)
             .to({ alpha: 0 }, 1000).call(function () {
+                sessionStorage.setItem('reloaded', 'credits');
                 ending();
             });
     });

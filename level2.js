@@ -255,6 +255,8 @@ function handleCompleteSceneOne() {
     objects["zsl"] = new createjs.Bitmap(Queue.getResult("zsl")).set({ x: 380, y: 380, scaleX: 0.05, scaleY: 0.1, alpha: 0.01 });
     objects["xjkfill"] = new createjs.Bitmap(Queue.getResult("xjk")).set({ x: 1140, y: 520, scaleX: 0.01, scaleY: 0.01, alpha: 0.01 });
     objects["zslfill"] = new createjs.Bitmap(Queue.getResult("zsl")).set({ x: 1140, y: 520, scaleX: 0.01, scaleY: 0.01, alpha: 0.01 });
+    objects["zsl"].shadow = new createjs.Shadow("#000", 5, 5, 10);
+    objects["xjkfill"].shadow = new createjs.Shadow("#000", 5, 5, 10);
     objects["announcement"] = new createjs.Bitmap(Queue.getResult("announcement")).set({ x: 767, y: 630, scaleX: 0.03, scaleY: 0.025, alpha: 0.8 });
     objects["sealmark"] = new createjs.Bitmap(Queue.getResult("sealmark")).set({ x: 767, y: 630, scaleX: 0.01, scaleY: 0.01, alpha: 0.01 });
 

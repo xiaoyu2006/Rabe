@@ -14,7 +14,7 @@ function init() {
     stage.enableMouseOver();
     createjs.Touch.enable(stage);
     stage.update();
-    createjs.Ticker.interval = 1000/60;
+    createjs.Ticker.interval = 1000 / 60;
     createjs.Ticker.addEventListener("tick", stage);
     init_adjustScreen();
     init_initSceneOne();
@@ -44,19 +44,26 @@ function init_initSceneOne() {
     Queue.on("complete", init_handleCompleteSceneOne, this);
     Queue.loadManifest([
         { id: "init", src: "img/init.png" },
+        { id: "credits", src: "img/credits.jpg" },
         { id: "init_select", src: "img/init_select.png" },
     ]);
 }
 
 function init_handleCompleteSceneOne() {
-    objects["init"] = new createjs.Bitmap(Queue.getResult("init")).set({ scaleX: 0.24, scaleY: 0.24 });
+    // Hackish but works
+    if (sessionStorage.getItem('reloaded') === 'credits') {
+        objects["init"] = new createjs.Bitmap(Queue.getResult("credits"));
+    } else {
+        objects["init"] = new createjs.Bitmap(Queue.getResult("init")).set({ scaleX: 0.24, scaleY: 0.24 });
+    }
+
 
     var but1 = new createjs.Shape(); objects["but1"] = but1;
     but1.graphics.beginFill("red").drawRect(0, 0, 800, 300);
     but1.set({ x: 850, y: 820, scaleX: 0.3, scaleY: 0.3, rotation: 0, alpha: 0.01 });
     but1.addEventListener("click", onbut1Clicked);
 
-    if (sessionStorage.getItem('reloaded') === 'true') {
+    if (sessionStorage.getItem('reloaded') === 'menu') {
         onbut1Clicked();
     }
 
@@ -72,7 +79,8 @@ function init_drawSceneOne() {
     stage.update();
 }
 
-function removejscssfile(filename, filetype) {``
+function removejscssfile(filename, filetype) {
+    ``
     var targetelement = (filetype == "js") ? "script" : (filetype == "css") ? "link" : "none"
 
     var targetattr = (filetype == "js") ? "src" : (filetype == "css") ? "href" : "none"
@@ -91,7 +99,9 @@ function removejscssfile(filename, filetype) {``
 
 // Go to menu
 function onbut1Clicked() {
-    sessionStorage.setItem('reloaded', 'true');
+    if (sessionStorage.getItem('reloaded') !== 'credits') {
+        sessionStorage.setItem('reloaded', 'menu');
+    }
     container.removeChild(objects["init"]);
     objects["init"] = new createjs.Bitmap(Queue.getResult("init_select")).set({ scaleX: 0.5, scaleY: 0.5 });
     container.addChild(objects["init"]);
