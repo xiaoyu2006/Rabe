@@ -165,10 +165,14 @@ queue.loadManifest([
 ]);
 
 var indoor;
-var shelterSandbagFlag = false;
+var hintStage = 0;
 function giveHints() {
-    if (!shelterSandbagFlag) {
-        showHint("在窗外放置沙袋", 2000);
+    if (hintStage == 0) {
+        showHint("为了安全是不是考虑在窗外放置沙袋？", 2000);
+    } else if (hintStage == 1) {
+        showHint("贴上火车票", 2000);
+    } else if (hintStage == 2) {
+        showHint("看看外面的情况吧", 2000);
     }
 }
 
@@ -254,7 +258,7 @@ function shelter_handler() {
     things[6].set({ alpha: 0 });
     if (things[5].x == 630) {
         container.removeChild(things[5]);
-        shelterSandbagFlag = true;
+        hintStage = 1;
     }
 }
 
@@ -312,6 +316,7 @@ function state1_end() {
     container.removeChild(bg);
     container.addChild(things[13]);
     state = 2;
+    hintStage = 2;
 }
 
 function state3_end() {
