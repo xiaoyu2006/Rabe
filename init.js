@@ -56,6 +56,10 @@ function init_handleCompleteSceneOne() {
     but1.set({ x: 850, y: 820, scaleX: 0.3, scaleY: 0.3, rotation: 0, alpha: 0.01 });
     but1.addEventListener("click", onbut1Clicked);
 
+    if (sessionStorage.getItem('reloaded') === 'true') {
+        onbut1Clicked();
+    }
+
     init_drawSceneOne();
 }
 
@@ -85,7 +89,9 @@ function removejscssfile(filename, filetype) {``
 
 }
 
+// Go to menu
 function onbut1Clicked() {
+    sessionStorage.setItem('reloaded', 'true');
     container.removeChild(objects["init"]);
     objects["init"] = new createjs.Bitmap(Queue.getResult("init_select")).set({ scaleX: 0.5, scaleY: 0.5 });
     container.addChild(objects["init"]);
