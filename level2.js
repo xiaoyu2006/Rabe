@@ -235,13 +235,26 @@ function initSceneOne() {
     ]);
 }
 
+function giveHints() {
+    if (controller.checkStatus("photo") == READY) {
+        showHint("把照片放进相框", 2000)
+    } else if (controller.checkStatus("telegram") == READY) {
+        showHint("填写电报", 2000)
+    } else if (controller.checkStatus("seal") == READY) {
+        showHint("盖章", 2000)
+    }
+
+}
+
 function handleCompleteSceneOne() {
     progressnum = 0;
     loading.set({ alpha: 0 });
 
     objects["Sceneone"] = new createjs.Bitmap(Queue.getResult("Sceneone"));
+    objects["Sceneone"].addEventListener("click", giveHints);
     objects["diary"] = new createjs.Bitmap(Queue.getResult("diaryone")).set({ x: 900, y: 600, scaleX: 0.06, scaleY: 0.035, alpha: 0.01 });
     objects["photo"] = new createjs.Bitmap(Queue.getResult("photo")).set({ x: 0, y: 0, scaleX: 0.01, scaleY: 0.01, rotaion: 0, alpha: 0 });
+    objects["photo"].shadow = new createjs.Shadow("#888", 20, 20, 20);
     objects["photoframe"] = new createjs.Bitmap(Queue.getResult("photoframe")).set({ x: 666, y: 602, scaleX: 0.064, scaleY: 0.095, rotation: -15, alpha: 0.01 });
 
     var photoframesqure = new createjs.Shape(); objects["photoframesquare"] = photoframesqure;
@@ -255,8 +268,8 @@ function handleCompleteSceneOne() {
     objects["zsl"] = new createjs.Bitmap(Queue.getResult("zsl")).set({ x: 380, y: 380, scaleX: 0.05, scaleY: 0.1, alpha: 0.01 });
     objects["xjkfill"] = new createjs.Bitmap(Queue.getResult("xjk")).set({ x: 1140, y: 520, scaleX: 0.01, scaleY: 0.01, alpha: 0.01 });
     objects["zslfill"] = new createjs.Bitmap(Queue.getResult("zsl")).set({ x: 1140, y: 520, scaleX: 0.01, scaleY: 0.01, alpha: 0.01 });
-    objects["zsl"].shadow = new createjs.Shadow("#000", 5, 5, 10);
-    objects["xjkfill"].shadow = new createjs.Shadow("#000", 5, 5, 10);
+    // objects["zslfill"].shadow = new createjs.Shadow("#ccc", 5, 5, 10);
+    // objects["xjkfill"].shadow = new createjs.Shadow("#ccc", 5, 5, 10);
     objects["announcement"] = new createjs.Bitmap(Queue.getResult("announcement")).set({ x: 767, y: 630, scaleX: 0.03, scaleY: 0.025, alpha: 0.8 });
     objects["sealmark"] = new createjs.Bitmap(Queue.getResult("sealmark")).set({ x: 767, y: 630, scaleX: 0.01, scaleY: 0.01, alpha: 0.01 });
 
