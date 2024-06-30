@@ -107,3 +107,51 @@ function onOnce(target, type, f) {
         f.call(target, event);
     });
 };
+
+// == Subtitle
+
+function consSubtitle(text) {
+    var subtitle = new createjs.Text();
+    subtitle.set({ text: text, font: "Italic 200px", color: "#fff", lineWidth: canvasX });
+    var b = subtitle.getBounds();
+    // Center the text
+    subtitle.set({ x: canvasX / 2 - b.width / 2, y: canvasY / 2 - b.height / 2 });
+
+    var background = new createjs.Shape();
+    background.graphics.beginFill("black").drawRect(0, 0, canvasX, b.height);
+    background.alpha = 0.5;
+
+    var container = new createjs.Container();
+    container.addChild(background);
+    container.addChild(subtitle);
+
+    return container;
+}
+
+function showSubtitle(text, time) {
+    var subtitle = consSubtitle(text);
+
+    container.addChild(subtitle);
+    createjs.Tween.get(subtitle)
+        .to({ alpha: 0 }, time, createjs.Ease.getPowInOut(5))
+        .call(function () {
+            container.removeChild(subtitle);
+        });
+}
+
+// Returns a function that removes the subtitle
+function showSubtitleStart(text) {
+    var subtitle = consSubtitle(text);
+
+    container.addChild(subtitle);
+
+    return () => {
+        createjs.Tween.get(subtitle)
+            .to({ alpha: 0 }, 200, createjs.Ease.getPowInOut(5))
+            .call(function () {
+                container.removeChild(subtitle);
+            });
+    };
+}
+
+

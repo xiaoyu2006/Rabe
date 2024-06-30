@@ -596,6 +596,7 @@ function onRavenClicked() {
         createjs.Tween.get(objects["AsiaEuroMap"]).to({ alpha: 0 }, 1000);
         textSceneTwo.set({ alpha: 0 });
         container.addChild(textSceneTwo);
+        var endsub = showSubtitleStart("In Rabes Kindheit waren die Legenden und Kunstwerke, die sein Vater aus China mitbrachte, wie Samen der Zivilisation in sein Herz gesät.");
         createjs.Tween.get(textSceneTwo).to({ alpha: 1 }, 1000).call(function () {
             createjs.Tween.get(textSceneTwo).to({ alpha: 1 }, 7000).call(function () {
                 createjs.Tween.get(objects["raven"]).to({ alpha: 0 }, 1000);
@@ -604,6 +605,7 @@ function onRavenClicked() {
                     container.removeChild(objects["raven"]);
                     container.removeChild(objects["AsiaEuroMap"]);
                     container.removeChild(textSceneTwo);
+                    endsub();
                     initSceneThree();
                 });
             });
