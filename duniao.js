@@ -30,9 +30,10 @@ var textSceneFour2 = new createjs.Text("在拉贝影响下，\n\n他的未婚妻
     , "Italic 50px KaiTi", "#fff").set({ x: 900, y: 100 });
 var textSceneFour3 = new createjs.Text("凭借着自己的才能与勤奋，\n\n拉贝在西门子站稳了脚跟，\n\n很快就出任西门子北京分公司经理，\n\n之后又在天津分公司工作。"
     , "Italic 50px KaiTi", "#fff").set({ x: 950, y: 150 });
+    // FIXME: Sub timing
 var textSceneFour4 = new createjs.Text("拉贝和公司的中国人相处得尤为融洽，\n\n他很喜欢和中国人交朋友，\n\n其中有一位叫鲍家良的青年在他手下干会计，\n\n拉贝待他情同父子。"
     , "Italic 50px KaiTi", "#fff").set({ x: 950, y: 150 });
-var textSceneFive1 = new createjs.Text("生意之余，拉贝热衷于领略中国文化的精髓。\n\n北京的博物馆、庙宇、宫殿、古玩市场、甚至周围的田野和乡村，\n\n都让他和道拉惊叹并赞不绝口。\n\n拿起老相机，\n\n看看100年前拉贝镜头下的颐和园是什么样子吧"
+var textSceneFive1 = new createjs.Text("生意之余，拉贝热衷于领略中国文化的精髓。\n\n北京的博物馆、庙宇、宫殿、古玩市场、甚至周围的田野和乡村，\n\n都让他和道拉惊叹并赞不绝口。\n\n拿起老相机，\n\n看看100年前拉贝镜头下的颐和园是什么样子吧！"
     , "Italic 50px KaiTi", "#fff").set({ x: 100, y: 100 });
 var textSceneFive2 = new createjs.Text(""
     , "Italic 50px KaiTi", "#fff").set({ x: 100, y: 280 });
@@ -404,9 +405,9 @@ function onScenefourClick() {
             showHint("瞧瞧那一堆杂乱的文件？\nSehen Sie sich dieses Durcheinander von Papieren an.", 2000);
         }
         else if (controller.checkStatus("marriage") != COMPLETED || controller.checkStatus("factory") != COMPLETED || controller.checkStatus("workmate") != COMPLETED) {
-            showHint("看看墙上的相片？", 2000);
+            showHint("看看墙上的相片？Sehen Sie die bitte Fotos an der Wand.", 2000);
         } else {
-            showHint("去拍照吧", 2000);
+            showHint("去拍照吧！Machen Sie ein Foto!", 2000);
             objects["Scenefour"].removeEventListener("click", onScenefourClick);
         }
     }
@@ -519,6 +520,7 @@ function drawSceneFive() {
 
 function drawSceneSix() {
     container.addChild(textSceneSix1);
+    var endSub = showSubtitleStart("Im August 1930 fand die Hochzeit von Rabes Tochter in einer Kirche in Tianjin statt.");
     textSceneSix1.set({ alpha: 0 });
     createjs.Tween.get(textSceneSix1)
         .to({ alpha: 1 }, 1000)
@@ -526,7 +528,9 @@ function drawSceneSix() {
         .to({ alpha: 0 }, 1000)
         .call(function () {
             container.removeChild(textSceneSix1);
+            endSub();
             container.addChild(textSceneSix2);
+            var endSub2 = showSubtitleStart("Die besten Jahre meiner Jugend habe ich glücklich in diesem Land verbracht. Meine Kinder und Enkelkinder sind hier geboren, meine Karriere war hier erfolgreich, und ich wurde von den Chinesen immer großzügig behandelt. \n--John Rabe");
             container.addChild(objects["family"]);
             textSceneSix2.set({ alpha: 0 });
             createjs.Tween.get(objects["family"]).to({ alpha: 1 }, 1000);
@@ -538,6 +542,7 @@ function drawSceneSix() {
                     createjs.Tween.get(textSceneSix2).to({ alpha: 0 }, 1000).call(function () {
                         container.removeChild(textSceneSix1);
                         container.removeChild(textSceneSix2);
+                        endSub2();
                         container.removeChild(objects["family"]);
                         intitSceneSeven();
                     });
@@ -596,7 +601,7 @@ function onRavenClicked() {
         createjs.Tween.get(objects["AsiaEuroMap"]).to({ alpha: 0 }, 1000);
         textSceneTwo.set({ alpha: 0 });
         container.addChild(textSceneTwo);
-        var endsub = showSubtitleStart("In Rabes Kindheit waren die Legenden und Kunstwerke, die sein Vater aus China mitbrachte, wie Samen der Zivilisation in sein Herz gesät. \n1918 reiste Rabe über den Ozean nach Beijing, das er sich schon lange gewünscht hatte.");
+        var endSub = showSubtitleStart("In Rabes Kindheit waren die Legenden und Kunstwerke, die sein Vater aus China mitbrachte, wie Samen der Zivilisation in sein Herz gesät. \n1918 reiste Rabe über den Ozean nach Beijing, das er sich schon lange gewünscht hatte.");
         createjs.Tween.get(textSceneTwo).to({ alpha: 1 }, 1000).call(function () {
             createjs.Tween.get(textSceneTwo).to({ alpha: 1 }, 7000).call(function () {
                 createjs.Tween.get(objects["raven"]).to({ alpha: 0 }, 1000);
@@ -605,7 +610,7 @@ function onRavenClicked() {
                     container.removeChild(objects["raven"]);
                     container.removeChild(objects["AsiaEuroMap"]);
                     container.removeChild(textSceneTwo);
-                    endsub();
+                    endSub();
                     initSceneThree();
                 });
             });
@@ -696,8 +701,10 @@ function onmarriageClicked() {
             createjs.Tween.get(objects["files"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["Scenefour"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["marriage"]).to({ alpha: 0.01, x: 1060, y: 90, scaleX: 0.1, scaleY: 0.1 }, 200);
+            var endSub = showSubtitleStart("Seine Verlobte Dora reiste im folgenden Jahr allein nach China, und im Oktober 1909 heirateten sie in Beijing.");
             createjs.Tween.get(textSceneFour2).to({ alpha: 0 }, 1000).call(function () {
                 container.removeChild(textSceneFour2);
+                endSub();
                 objects["marriage"].addEventListener("click", onmarriageClicked);
                 controller.completeTask("marriage");
                 controller.enableTask("scenefour");
@@ -723,8 +730,10 @@ function onfactoryClicked() {
             createjs.Tween.get(objects["files"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["Scenefour"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["factory"]).to({ x: 1300, y: 200, scaleX: 0.1, scaleY: 0.16, alpha: 0.01 }, 200);
+            var endSub = showSubtitleStart("Dank seines Talents und seines Fleißes wurde Rabe bald Leiter der Filiale von Siemens-Konzern in Beijing.");
             createjs.Tween.get(textSceneFour3).to({ alpha: 0 }, 1000).call(function () {
                 container.removeChild(textSceneFour3);
+                endSub();
                 objects["factory"].addEventListener("click", onfactoryClicked);
                 controller.completeTask("factory");
                 controller.enableTask("scenefour");
@@ -749,8 +758,10 @@ function onphotoClicked() {
             createjs.Tween.get(objects["files"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["Scenefour"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["workmate"]).to({ x: 1300, y: 200, scaleX: 0.1, scaleY: 0.16, alpha: 0.01 }, 200);
+            var endSub = showSubtitleStart("Er freundete sich gerne mit den Chinesen an, und einer von ihnen, ein junger Mann heißt Bao Jialiang, arbeitete unter ihm als Buchhalter. Rabe behandelte ihn wie Vater und Sohn.");
             createjs.Tween.get(textSceneFour4).to({ alpha: 0 }, 1000).call(function () {
                 container.removeChild(textSceneFour4);
+                endSub();
                 objects["factory"].addEventListener("click", onfactoryClicked);
                 controller.completeTask("workmate");
                 controller.enableTask("scenefour");
@@ -773,8 +784,9 @@ function oncameraClicked() {
         createjs.Tween.get(objects["files"]).to({ alpha: 0 }, 1000);
         createjs.Tween.get(objects["Scenefour"]).to({ alpha: 0 }, 1000).call(function () {
             clearScreen();
+            var endSub = showSubtitleStart("Außerhalb des Geschäftslebens wollte Rabe die Essenz der chinesischen Kultur entdecken. Schnappen Sie sich eine alte Kamera und sehen Sie, wie der Sommerpalast vor 100 Jahren unter Rabes Kamera aussah!");
             container.addChild(textSceneFive1);
-            container.addChild(textSceneFive2)
+            container.addChild(textSceneFive2);
             textSceneFive1.set({ alpha: 0 });
             textSceneFive2.set({ alpha: 0 });
             createjs.Tween.get(textSceneFive2).to({ alpha: 1 }, 1000);
@@ -784,6 +796,7 @@ function oncameraClicked() {
                     createjs.Tween.get(textSceneFive2).to({ alpha: 0 }, 1000).call(function () {
                         container.removeChild(textSceneFive1);
                         container.removeChild(textSceneFive2);
+                        endSub();
                         initSceneFive();
                     })
                 })
@@ -886,10 +899,12 @@ function scene5end() {
 
             textSceneFive3.set({ alpha: 0 });
             container.addChild(textSceneFive3);
+            var endSub = showSubtitleStart("Aus Liebe zur chinesischen Kultur sammelte er eine große Anzahl von Fotos und Gemälden von Beijing.");
             createjs.Tween.get(textSceneFive3)
                 .to({ alpha: 1 }, 1000)
                 .to({ alpha: 1 }, 7000)
                 .to({ alpha: 0 }, 1000).call(function () {
+                    endSub();
                     initSceneSix();
                 });
         });

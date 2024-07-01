@@ -302,10 +302,12 @@ function drawSceneOne() {
     removeHint();
 
     container.addChild(begintext);
+    var endSub = showSubtitleStart("Ende Februar 1938 nahm Rabe ein Schiff von dem Bezirk Xiaguan in Nanjing nach Shanghai und kehrte nach Deutschland zurück.\n\"Auf Wiedersehen, Nanjing, das ich so sehr in meinem Herzen geliebt habe.\"");
     begintext.set({ alpha: 0 });
     createjs.Tween.get(begintext).to({ alpha: 1 }, 1000).call(function () {
         createjs.Tween.get(begintext).to({ alpha: 1 }, 7000).call(function () {
             createjs.Tween.get(begintext).to({ alpha: 0 }, 1000).call(function () {
+                endSub();
                 container.addChild(objects["dock"]);
                 container.addChild(objects["rabe"]);
 
@@ -336,10 +338,12 @@ function drawSceneTwo() {
     document.getElementById("myaudio").pause();
 
     container.addChild(museumtext);
+    var endSub = showSubtitleStart("Der Mann ist schon weg, aber die Liebe bleibt ewig. Betreten Sie das Museum und erfahren Sie mehr über die Entdeckung der Geschichte von Rabe und die heutige Verbreitung des Geistes von Rabe.");
     museumtext.set({ alpha: 0 });
     createjs.Tween.get(museumtext).to({ alpha: 1 }, 1000).call(function () {
         createjs.Tween.get(museumtext).to({ alpha: 1 }, 7000).call(function () {
             createjs.Tween.get(museumtext).to({ alpha: 0 }, 1000).call(function () {
+                endSub();
 
                 container.addChild(objects["s2_1"]);
                 container.addChild(objects["s2_2"]);
