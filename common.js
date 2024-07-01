@@ -113,19 +113,22 @@ function onOnce(target, type, f) {
 function consSubtitle(text) {
     var subtitle = new createjs.Text();
     // 200 margin
-    subtitle.set({ text: text, font: "Italic 40px Arial", color: "#fff", lineWidth: canvasX - 200 });
+    subtitle.set({ text: text, font: "Italic 50px Arial", color: "#fff", lineWidth: canvasX - 200 });
     var b = subtitle.getBounds();
     // Center the text
-    subtitle.set({ x: canvasX / 2 - b.width / 2 , y: canvasY-250 });
+    subtitle.set({ x: canvasX / 2 - b.width / 2, y: canvasY - 250 });
 
     var background = new createjs.Shape();
-    background.graphics.beginFill("black").drawRect(0, 0, canvasX, b.height);
+    background.graphics
+        .beginFill("black")
+        .drawRect(0, 0, canvasX, b.height + 20);
     background.alpha = 0.5;
+    background.y = canvasY - 250 - 10;
+    background.x = 0;
 
     var container = new createjs.Container();
     container.addChild(background);
     container.addChild(subtitle);
-    container.set({})
 
     return container;
 }

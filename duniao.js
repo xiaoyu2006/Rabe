@@ -401,7 +401,7 @@ function onScenefourClick() {
     if (thistime - ScenefourTimer > 5000 && controller.checkStatus("scenefour") != DISABLED) {
         ScenefourTimer = thistime;
         if (controller.checkStatus("files") != COMPLETED) {
-            showHint("瞧瞧那一堆杂乱的文件？", 2000);
+            showHint("瞧瞧那一堆杂乱的文件？\nSehen Sie sich dieses Durcheinander von Papieren an.", 2000);
         }
         else if (controller.checkStatus("marriage") != COMPLETED || controller.checkStatus("factory") != COMPLETED || controller.checkStatus("workmate") != COMPLETED) {
             showHint("看看墙上的相片？", 2000);
@@ -596,7 +596,7 @@ function onRavenClicked() {
         createjs.Tween.get(objects["AsiaEuroMap"]).to({ alpha: 0 }, 1000);
         textSceneTwo.set({ alpha: 0 });
         container.addChild(textSceneTwo);
-        var endsub = showSubtitleStart("In Rabes Kindheit waren die Legenden und Kunstwerke, die sein Vater aus China mitbrachte, wie Samen der Zivilisation in sein Herz gesät.");
+        var endsub = showSubtitleStart("In Rabes Kindheit waren die Legenden und Kunstwerke, die sein Vater aus China mitbrachte, wie Samen der Zivilisation in sein Herz gesät. \n1918 reiste Rabe über den Ozean nach Beijing, das er sich schon lange gewünscht hatte.");
         createjs.Tween.get(textSceneTwo).to({ alpha: 1 }, 1000).call(function () {
             createjs.Tween.get(textSceneTwo).to({ alpha: 1 }, 7000).call(function () {
                 createjs.Tween.get(objects["raven"]).to({ alpha: 0 }, 1000);
@@ -617,12 +617,14 @@ function onFrontDoorClicked() {
     createjs.Tween.get(objects["FrontDoor"]).to({ alpha: 0 }, 2000).call(function () {
         textSceneThree.set({ alpha: 0 });
         container.addChild(textSceneThree);
+        var subEnd = showSubtitleStart("Junger Mann, wir brauchen einen Buchhalter und einen Büroangestellten. Wenn es dir nicht auf das kleine Gehalt und die harte Arbeit ankommen, kannst du morgen hierher kommen und arbeiten.");
         createjs.Tween.get(textSceneThree)
             .to({ alpha: 1 }, 1000)
             .to({ alpha: 1 }, 7000)
             .to({ alpha: 0 }, 1000).call(function () {
                 container.removeChild(objects["FrontDoor"]);
                 container.removeChild(textSceneThree);
+                subEnd();
                 initSceneFour();
             })
     })
@@ -665,11 +667,13 @@ function onbuttonClicked() {
         createjs.Tween.get(objects["Scenefour"]).to({ alpha: 0.5 }, 1000).call(function () {
 
             textSceneFour1.set({ alpha: 0 });
+            var endSub = showSubtitleStart("Rabe, vielen dank für deine hervorragende Arbeit in der Buchhaltung. Du hast dem Unternehmen Hunderte von Dollar an monatlichen Abrechnungen erspart. Du bist wirklich ein erstklassiger Experte für die Geschäfte des Unternehmens!");
             container.addChild(textSceneFour1);
             createjs.Tween.get(textSceneFour1).to({ alpha: 1 }, 200).call(function () {
                 createjs.Tween.get(textSceneFour1).to({ alpha: 1 }, 7000).call(function () {
                     createjs.Tween.get(textSceneFour1).to({ alpha: 0 }, 1000).call(function () {
                         container.removeChild(textSceneFour1);
+                        endSub();
                         controller.completeTask("files");
                         controller.enableTask("scenefour");
                     });
