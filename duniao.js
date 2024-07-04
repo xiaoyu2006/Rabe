@@ -724,13 +724,13 @@ function onfactoryClicked() {
     controller.disableTask("scenefour");
     objects["factory"].removeEventListener("click", onfactoryClicked);
     createjs.Tween.get(objects["files"]).to({ alpha: 0.5 }, 1000);
+    var endSub = showSubtitleStart("Dank seines Talents und seines Fleißes wurde Rabe bald Leiter der Filiale von Siemens-Konzern in Beijing.");
     createjs.Tween.get(objects["Scenefour"]).to({ alpha: 0.5 }, 1000).call(function () {
         //playEffect("elecnoise.mp3", 3000);
         objects["factory"].addEventListener("click", function () {
             createjs.Tween.get(objects["files"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["Scenefour"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["factory"]).to({ x: 1300, y: 200, scaleX: 0.1, scaleY: 0.16, alpha: 0.01 }, 200);
-            var endSub = showSubtitleStart("Dank seines Talents und seines Fleißes wurde Rabe bald Leiter der Filiale von Siemens-Konzern in Beijing.");
             createjs.Tween.get(textSceneFour3).to({ alpha: 0 }, 1000).call(function () {
                 container.removeChild(textSceneFour3);
                 endSub();
@@ -753,12 +753,12 @@ function onphotoClicked() {
     controller.disableTask("scenefour");
     objects["workmate"].removeEventListener("click", onphotoClicked);
     createjs.Tween.get(objects["files"]).to({ alpha: 0.5 }, 1000);
+    var endSub = showSubtitleStart("Er freundete sich gerne mit den Chinesen an, und einer von ihnen, ein junger Mann heißt Bao Jialiang, arbeitete unter ihm als Buchhalter. Rabe behandelte ihn wie Vater und Sohn.");
     createjs.Tween.get(objects["Scenefour"]).to({ alpha: 0.5 }, 1000).call(function () {
         objects["workmate"].addEventListener("click", function () {
             createjs.Tween.get(objects["files"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["Scenefour"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["workmate"]).to({ x: 1300, y: 200, scaleX: 0.1, scaleY: 0.16, alpha: 0.01 }, 200);
-            var endSub = showSubtitleStart("Er freundete sich gerne mit den Chinesen an, und einer von ihnen, ein junger Mann heißt Bao Jialiang, arbeitete unter ihm als Buchhalter. Rabe behandelte ihn wie Vater und Sohn.");
             createjs.Tween.get(textSceneFour4).to({ alpha: 0 }, 1000).call(function () {
                 container.removeChild(textSceneFour4);
                 endSub();

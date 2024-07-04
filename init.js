@@ -43,7 +43,7 @@ function init_adjustScreen() {
 function init_initSceneOne() {
     Queue.on("complete", init_handleCompleteSceneOne, this);
     Queue.loadManifest([
-        { id: "init", src: "img/init.png" },
+        { id: "init", src: "img/init.jpg" },
         { id: "credits", src: "img/credits.jpg" },
         { id: "init_select", src: "img/init_select.png" },
     ]);
@@ -54,7 +54,7 @@ function init_handleCompleteSceneOne() {
     if (sessionStorage.getItem('reloaded') === 'credits') {
         objects["init"] = new createjs.Bitmap(Queue.getResult("credits"));
     } else {
-        objects["init"] = new createjs.Bitmap(Queue.getResult("init")).set({ scaleX: 0.24, scaleY: 0.24 });
+        objects["init"] = new createjs.Bitmap(Queue.getResult("init")).set({ scaleX: 1, scaleY: 1 });
     }
 
 
