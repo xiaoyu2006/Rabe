@@ -696,12 +696,12 @@ function onmarriageClicked() {
     controller.disableTask("scenefour");
     objects["marriage"].removeEventListener("click", onmarriageClicked);
     createjs.Tween.get(objects["files"]).to({ alpha: 0.5 }, 1000);
+    var endSub = showSubtitleStart("Seine Verlobte Dora reiste im folgenden Jahr allein nach China, und im Oktober 1909 heirateten sie in Beijing.");
     createjs.Tween.get(objects["Scenefour"]).to({ alpha: 0.5 }, 1000).call(function () {
         objects["marriage"].addEventListener("click", function () {
             createjs.Tween.get(objects["files"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["Scenefour"]).to({ alpha: 1 }, 1000);
             createjs.Tween.get(objects["marriage"]).to({ alpha: 0.01, x: 1060, y: 90, scaleX: 0.1, scaleY: 0.1 }, 200);
-            var endSub = showSubtitleStart("Seine Verlobte Dora reiste im folgenden Jahr allein nach China, und im Oktober 1909 heirateten sie in Beijing.");
             createjs.Tween.get(textSceneFour2).to({ alpha: 0 }, 1000).call(function () {
                 container.removeChild(textSceneFour2);
                 endSub();
