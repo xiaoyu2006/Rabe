@@ -113,7 +113,9 @@ class Bag {
             createjs.Tween.get(objects[this.bagItem[i].name]).to({ x: this.startX, y: this.startY + this.offset * i, scaleX: this.scaleX * this.bagItem[i].scaleXoffset, scaleY: this.scaleY * this.bagItem[i].scaleYoffset }, 200);
         }
     }
-}; var bag = new Bag(6);
+};
+
+var bag = new Bag(6);
 
 
 
@@ -257,8 +259,11 @@ function handleCompleteSceneOne() {
     objects["photo"].shadow = new createjs.Shadow("#888", 20, 20, 20);
     objects["photoframe"] = new createjs.Bitmap(Queue.getResult("photoframe")).set({ x: 666, y: 602, scaleX: 0.064, scaleY: 0.095, rotation: -15, alpha: 0.01 });
 
-    var photoframesqure = new createjs.Shape(); objects["photoframesquare"] = photoframesqure;
-    photoframesqure.graphics.beginFill("red").drawRect(0, 0, 400, 400); photoframesqure.set({ x: 650, y: 580, scaleX: 0.3, scaleY: 0.3, rotation: 0, alpha: 0.01 });
+    var photoframesqure = new createjs.Shape();
+    objects["photoframesquare"] = photoframesqure;
+    photoframesqure.graphics.beginFill("red").setStrokeStyle(3).drawRect(0, 0, 100, 100);
+    photoframesqure.set({ x: 650, y: 580, alpha: 0.02 });
+    photoframesqure.setBounds(0, 0, 100, 100);
 
     objects["seal"] = new createjs.Bitmap(Queue.getResult("seal")).set({ x: 950, y: 550, scaleX: 0.06, scaleY: 0.035, alpha: 1 });
     objects["map"] = new createjs.Bitmap(Queue.getResult("map")).set({ x: 380, y: 380, scaleX: 0.05, scaleY: 0.1, alpha: 0.01 });
@@ -338,8 +343,9 @@ function ondiaryClicked() {
                 }
             }
             else {
+                console.log("a")
                 createjs.Tween.get(objects["diary"]).to({ x: 900, y: 600, scaleX: 0.06, scaleY: 0.035, alpha: 0.01 }, 200);
-                objects["photoframesquare"].on("mouseover", onphotoframeTriggered);
+                objects["photoframesquare"].addEventListener("mouseover", onphotoframeTriggered);
                 if (isMobile) {
                     objects["photoframesquare"].addEventListener("click", onphotoframeTriggered);
                 }
@@ -399,7 +405,7 @@ function ondiaryClicked() {
             };
             break;
         }
-        default: {}
+        default: { }
     }
 }
 
@@ -452,6 +458,7 @@ function onphotoClicked() {
 }
 
 function onphotoframeTriggered(evt) {
+    console.log("b")
     if ((itemHeld != null && itemHeld.name == "photo") || (isMobile && bag.getItem("photo") != null)) {
         bag.removeItem("photo");
         objects["photoframe"].alpha = 1;
@@ -578,6 +585,9 @@ function onbagitemDragged(evt) {
         evt.target.y = 1020 - evt.stageX;
     }
     itemHeld = bag.getItemByID(evt.target.id);
+    if (itemHeld != null && itemHeld.name == "photo") {
+        checkOverlap(evt.target.x, evt.target.y, objects["photoframesquare"])
+    }
 }
 
 
@@ -603,6 +613,19 @@ function clearScreen() {
 
 function ending() {
     location.reload();
+}
+
+function checkOverlap(x, y, goalpoint) {
+    const goalpointBounds = goalpoint.getBounds().clone();
+    goalpointBounds.x = goalpoint.x - goalpointBounds.width / 2;
+    goalpointBounds.y = goalpoint.y - goalpointBounds.height / 2;
+
+    console.log(x, y)
+    if (goalpointBounds.contains(x, y)) {
+        // Trigger mouseover event manually
+        const event = new createjs.MouseEvent("mouseover", true, false, goalpoint.x, goalpoint.y);
+        goalpoint.dispatchEvent(event);
+    }
 }
 ///////////////////////////////////////Now we are on a go/////////////////////////////////////////
 init();
